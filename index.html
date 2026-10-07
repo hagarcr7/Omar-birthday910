@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday 3amory! 🎉</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #F7F3ED;
+      --card-bg: #FFFFFF;
+      --burgundy: #7A1C29;
+      --burgundy-hover: #5A121D;
+      --text-color: #333333;
+      --light-burgundy: #F9ECEE;
+      --error-red: #D9534F;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 30px 20px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(122, 28, 41, 0.08);
+      text-align: center;
+      border: 1.5px solid #EAE3D9;
+    }
+
+    h1, h2 {
+      color: var(--burgundy);
+      margin-bottom: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      color: #555555;
+    }
+
+    .btn-main {
+      background-color: var(--burgundy);
+      color: #FFFFFF !important;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(122, 28, 41, 0.25);
+      margin-top: 15px;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .btn-main:hover {
+      background-color: var(--burgundy-hover);
+      transform: translateY(-2px);
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .option-btn {
+      background-color: #FAF8F5;
+      border: 1.5px solid #EAE3D9;
+      color: var(--text-color);
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      cursor: pointer;
+      text-align: right;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+
+    .option-btn:hover {
+      background-color: var(--light-burgundy);
+      border-color: var(--burgundy);
+      color: var(--burgundy);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background-color: #EAE3D9;
+      border-radius: 3px;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--burgundy);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .error-msg {
+      color: var(--error-red);
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 10px;
+      animation: shake 0.3s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- شاشة البداية -->
+    <div id="start-screen">
+      <h1 style="font-size: 2rem; margin-bottom: 15px;">Happy Birthday<br>3amory ❤️</h1>
+      <p style="font-size: 1.1rem; font-weight: 600;">هعملك اختبار جاوب عشان تاخد الهدية 😂</p>
+      <button class="btn-main" onclick="startQuiz()">يلا نبتدي ✨</button>
+    </div>
+
+    <!-- شاشة الأسئلة -->
+    <div id="question-screen" class="hidden">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress"></div>
+      </div>
+      <h2 id="question-text" style="font-size: 1.25rem;">السؤال</h2>
+      <div class="options-grid" id="options-container"></div>
+      <div id="error-container"></div>
+    </div>
+
+    <!-- شاشة النهاية والتحويل للصفحة التانية -->
+    <div id="end-screen" class="hidden">
+      <h1 style="font-size: 1.6rem; margin-bottom: 25px;">ايوووا خبوا عيالكم عموره جالكم 😂💪🏻</h1>
+      <a href="gift.html" class="btn-main" onclick="playWinSound()">دوس هنا عشان تشوف الهدية 🎁</a>
+    </div>
+
+  </div>
+
+  <script>
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    document.addEventListener('touchstart', initAudio, { once: true });
+    document.addEventListener('click', initAudio, { once: true });
+
+    function playTone(freq, type, duration) {
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    function playCorrectSound() {
+      playTone(523.25, 'sine', 0.15);
+      setTimeout(() => playTone(659.25, 'sine', 0.25), 100);
+    }
+
+    function playWrongSound() {
+      playTone(180, 'sawtooth', 0.2);
+      setTimeout(() => playTone(120, 'sawtooth', 0.3), 120);
+    }
+
+    function playWinSound() {
+      const notes = [440, 554.37, 659.25, 880];
+      notes.forEach((freq, i) => {
+        setTimeout(() => playTone(freq, 'triangle', 0.3), i * 120);
+      });
+    }
+
+    const questions = [
+      {
+        question: "إيه أكثر حاجة بتحبها في الدنيا...؟",
+        answers: [
+          { text: "هاجر", correct: true },
+          { text: "هجوره", correct: true },
+          { text: "هجورتك", correct: true }
+        ]
+      },
+      {
+        question: "اسم المكان اللي فطرنا فيه في رمضان...؟",
+        answers: [
+          { text: "كمانانا", correct: false },
+          { text: "كمنه", correct: true },
+          { text: "قرية عبد الوهاب", correct: false }
+        ]
+      },
+      {
+        question: "مكان الحسنة اللي في وشي...؟",
+        answers: [
+          { text: "في اليمين", correct: false },
+          { text: "في الشمال", correct: true },
+          { text: "في قفايا", correct: false }
+        ]
+      },
+      {
+        question: "معنى كلمة كلاماتا...؟",
+        answers: [
+          { text: "بكرهك", correct: false },
+          { text: "بحبك", correct: true },
+          { text: "واحشتيني", correct: false }
+        ]
+      },
+      {
+        question: "أكثر مكان بنحب نروحه...؟",
+        answers: [
+          { text: "كارفور", correct: false },
+          { text: "جليم", correct: false },
+          { text: "شارع النخيل", correct: true }
+        ]
+      },
+      {
+        question: "اذكر اسم اللعبة اللي اخترعناها...؟",
+        answers: [
+          { text: "اللسان", correct: true },
+          { text: "العيون", correct: false },
+          { text: "الودان", correct: false }
+        ]
+      },
+      {
+        question: "إيه الكابل اللي شبهنا...؟",
+        answers: [
+          { text: "تيمون وبومبه", correct: false },
+          { text: "ويسو وايسو", correct: true },
+          { text: "عزمي واشجان", correct: false }
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function startQuiz() {
+      initAudio();
+      playCorrectSound();
+      document.getElementById('start-screen').classList.add('hidden');
+      document.getElementById('question-screen').classList.remove('hidden');
+      showQuestion();
+    }
+
+    function showQuestion() {
+      document.getElementById('error-container').innerHTML = '';
+      const q = questions[currentQuestionIndex];
+      document.getElementById('question-text').innerText = q.question;
+      
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      q.answers.forEach(answer => {
+        const btn = document.createElement('button');
+        btn.className = 'option-btn';
+        btn.innerText = answer.text;
+        btn.onclick = () => handleAnswer(answer.correct);
+        optionsContainer.appendChild(btn);
+      });
+
+      const progressPercent = ((currentQuestionIndex) / questions.length) * 100;
+      document.getElementById('progress').style.width = progressPercent + '%';
+    }
+
+    function handleAnswer(isCorrect) {
+      if (isCorrect) {
+        playCorrectSound();
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          showQuestion();
+        } else {
+          showEndScreen();
+        }
+      } else {
+        playWrongSound();
+        document.getElementById('error-container').innerHTML = '<p class="error-msg">طب مفيش هدية 😡</p>';
+      }
+    }
+
+    function showEndScreen() {
+      playWinSound();
+      document.getElementById('question-screen').classList.add('hidden');
+      document.getElementById('end-screen').classList.remove('hidden');
+      
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 },
+        colors: ['#7A1C29', '#EAE3D9', '#D4AF37']
+      });
+    }
+  </script>
+</body>
+</html>
