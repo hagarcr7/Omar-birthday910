@@ -32,6 +32,29 @@
       position: relative;
     }
 
+    /* خلفية الزينة والنجوم المستمرة في كل الصفحات */
+    .bg-sparkle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        radial-gradient(circle, #7A1C29 1.5px, transparent 1.5px),
+        radial-gradient(circle, #FFD700 1.2px, transparent 1.2px);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+      opacity: 0.18;
+      animation: sparkleMove 20s linear infinite;
+    }
+
+    @keyframes sparkleMove {
+      0% { background-position: 0 0, 30px 30px; }
+      100% { background-position: 100px 100px, 130px 130px; }
+    }
+
     .story-section {
       width: 100%;
       max-width: 420px;
@@ -42,9 +65,9 @@
       justify-content: center;
       position: relative;
       margin-bottom: 20px;
+      z-index: 2;
     }
 
-    /* كارت بتأثير ظهور راقي وهادئ كأنه قصة */
     .container {
       background-color: var(--card-bg);
       border-radius: 24px;
@@ -54,15 +77,6 @@
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .container.show {
-      opacity: 1;
-      transform: translateY(0) scale(1);
     }
 
     .story-img {
@@ -75,7 +89,30 @@
       box-shadow: 0 8px 25px rgba(122, 28, 41, 0.12);
     }
 
-    /* السهم الطاير زي الفراشة بينزل مع الشاشة */
+    /* تأثير تجميع الصورة الأولى */
+    .assembling-effect {
+      animation: assembleAnimation 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    @keyframes assembleAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-15deg) translateY(-50px);
+        filter: blur(10px);
+      }
+      50% {
+        opacity: 0.6;
+        transform: scale(1.08) rotate(5deg) translateY(10px);
+        filter: blur(3px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg) translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    /* السهم الطاير زي الفراشة */
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
@@ -103,7 +140,7 @@
       50% { transform: translateX(-50%) translateY(12px) rotate(3deg); }
     }
 
-    /* ورد خفيف وطاير في الخلفية */
+    /* ورد متحرك في الخلفية */
     .floating-flower {
       position: absolute;
       width: 22px;
@@ -123,7 +160,6 @@
       100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
     }
 
-    /* نجوم احتفالية للقسم الأخير */
     .star {
       position: absolute;
       width: 15px;
@@ -142,36 +178,38 @@
 </head>
 <body>
 
-  <!-- المزيكا شغالة ومستمرة بدون قطع -->
+  <!-- خلفية الزينة والنجوم المستمرة -->
+  <div class="bg-sparkle"></div>
+
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <!-- السهم الطاير زي الفراشة -->
+  <!-- السهم الطاير -->
   <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
 
   <!-- القسم الأول -->
   <div class="story-section" id="section-1">
-    <div class="container" id="box-1">
+    <div class="container">
       <img id="img-1" alt="Photo 1" class="story-img">
     </div>
   </div>
 
   <!-- القسم الثاني -->
   <div class="story-section" id="section-2">
-    <div class="container" id="box-2">
+    <div class="container">
       <img id="img-2" alt="Photo 2" class="story-img">
     </div>
   </div>
 
   <!-- القسم الثالث -->
   <div class="story-section" id="section-3">
-    <div class="container" id="box-3">
+    <div class="container">
       <img id="img-3" alt="Photo 3" class="story-img">
     </div>
   </div>
 
   <!-- القسم الرابع والأخير (الهدية والفرقعة) -->
   <div class="story-section" id="section-4">
-    <div class="container" id="box-4">
+    <div class="container">
       <img id="img-4" alt="Photo 4" class="story-img">
     </div>
   </div>
@@ -194,11 +232,6 @@
     window.onload = function() {
       createBackgroundFlowers();
       
-      // إظهار أول صورة بإنيميشن راقي وهادئ
-      setTimeout(() => {
-        document.getElementById('box-1').classList.add('show');
-      }, 200);
-
       const music = document.getElementById('bg-music');
       function playMusicOnce() {
         music.play().catch(e => console.log("Audio waiting"));
@@ -208,10 +241,10 @@
       document.addEventListener('click', playMusicOnce);
       document.addEventListener('touchstart', playMusicOnce);
 
-      loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1']);
-      loadSmartImage('img-2', ['Photo 2', 'photo2', 'Photo2', 'photo 2', '2']);
-      loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3']);
-      loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4']);
+      loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1'], true);
+      loadSmartImage('img-2', ['Photo 2', 'photo2', 'Photo2', 'photo 2', '2'], false);
+      loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3'], false);
+      loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4'], false);
     };
 
     function scrollToNext() {
@@ -229,13 +262,8 @@
       const target = document.getElementById('section-' + currentStep);
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // إظهار الصورة التالية تدريجياً وبشكل راقي
-        setTimeout(() => {
-          document.getElementById('box-' + currentStep).classList.add('show');
-        }, 300);
       }
 
-      // لو وصلنا للصفحة الأخيرة، نخفي السهم ونعمل احتفال فرقعة الهدية
       if (currentStep === totalSections) {
         setTimeout(() => {
           const arrow = document.getElementById('flying-arrow');
@@ -269,7 +297,7 @@
       }
     }
 
-    function loadSmartImage(imgId, namesList) {
+    function loadSmartImage(imgId, namesList, applyAssembleEffect) {
       const imgElem = document.getElementById(imgId);
       const exts = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
       let nIdx = 0;
@@ -281,7 +309,12 @@
           if (eIdx >= exts.length) { nIdx++; tryNextName(); return; }
           let src = base + '.' + exts[eIdx++];
           let testImg = new Image();
-          testImg.onload = () => imgElem.src = src;
+          testImg.onload = () => {
+            imgElem.src = src;
+            if (applyAssembleEffect) {
+              imgElem.classList.add('assembling-effect');
+            }
+          };
           testImg.onerror = () => tryNextExt();
           testImg.src = src;
         }
