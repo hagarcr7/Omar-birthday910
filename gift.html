@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday 3amory 🎉</title>
+  <!-- استيراد خطوط مزخرفة وجميلة تناسب التصميم -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     :root {
@@ -17,7 +19,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
     }
 
     body {
@@ -27,12 +29,12 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 40px 20px;
+      padding: 30px 15px;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* خلفية الزينة والنجوم المستمرة */
+    /* خلفية مطرقعة ومبهجة */
     .bg-sparkle {
       position: fixed;
       top: 0;
@@ -42,98 +44,102 @@
       pointer-events: none;
       z-index: 0;
       background-image: 
-        radial-gradient(circle, #7A1C29 1.5px, transparent 1.5px),
-        radial-gradient(circle, #FFD700 1.2px, transparent 1.2px);
-      background-size: 60px 60px;
-      background-position: 0 0, 30px 30px;
-      opacity: 0.18;
-      animation: sparkleMove 20s linear infinite;
+        radial-gradient(circle, #7A1C29 2px, transparent 2px),
+        radial-gradient(circle, #FFD700 2px, transparent 2px),
+        radial-gradient(circle, #FF69B4 1.5px, transparent 1.5px);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px, 12px 37px;
+      opacity: 0.25;
+      animation: sparkleMove 15s linear infinite;
     }
 
     @keyframes sparkleMove {
-      0% { background-position: 0 0, 30px 30px; }
-      100% { background-position: 100px 100px, 130px 130px; }
+      0% { background-position: 0 0, 25px 25px, 12px 37px; }
+      100% { background-position: 100px 100px, 125px 125px, 112px 137px; }
     }
 
     .story-section {
       width: 100%;
-      max-width: 420px;
-      min-height: 95vh;
+      max-width: 400px;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       z-index: 2;
     }
 
     .container {
       background-color: var(--card-bg);
       border-radius: 24px;
-      padding: 25px 18px;
+      padding: 22px 16px;
       width: 100%;
-      box-shadow: 0 15px 35px rgba(122, 28, 41, 0.1);
+      box-shadow: 0 15px 35px rgba(122, 28, 41, 0.12);
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
     }
 
-    /* الزينة اللي فوق السايت */
     .top-bunting {
       font-size: 1.5rem;
       color: var(--burgundy);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       letter-spacing: 4px;
     }
 
+    /* خطوط مشابهة لخطوط الصورة المزخرفة */
     .birthday-title {
       color: var(--burgundy);
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 5px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-family: 'Pacifico', cursive, sans-serif;
     }
 
     .birthday-subtitle {
-      color: #555;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
+      color: #444;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: 'Pacifico', cursive, sans-serif;
     }
 
     .story-img {
       width: 100%;
-      max-height: 350px;
+      max-height: 330px;
       object-fit: contain;
       border-radius: 16px;
       background-color: #FAF8F5;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
-    /* تصميم التقويم التفاعلي */
     .calendar-box {
-      margin-top: 10px;
+      margin-top: 8px;
       background: #FAF8F5;
-      padding: 12px;
+      padding: 10px;
       border-radius: 14px;
       border: 1px solid #EAE3D9;
     }
 
     .calendar-header {
       color: var(--burgundy);
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: bold;
-      margin-bottom: 8px;
+      font-family: 'Pacifico', cursive, sans-serif;
+      margin-bottom: 6px;
     }
 
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      font-size: 0.85rem;
+      gap: 3px;
+      font-size: 0.8rem;
     }
 
     .calendar-grid span {
-      padding: 4px;
+      padding: 3px;
       text-align: center;
       position: relative;
     }
@@ -143,7 +149,6 @@
       font-weight: bold;
     }
 
-    /* يوم 9 عليه قلب */
     .calendar-grid .heart-day {
       background-color: #F9ECEE;
       color: var(--burgundy);
@@ -157,28 +162,29 @@
     .calendar-grid .heart-day::after {
       content: '❤️';
       position: absolute;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       top: -2px;
       right: 0;
     }
 
     .footer-greeting {
-      margin-top: 15px;
+      margin-top: 12px;
       color: var(--burgundy);
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       font-weight: bold;
+      font-family: 'Amiri', serif;
     }
 
-    /* السهم الطاير */
+    /* السهم اللي بيطير زي الفراشة */
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 25px;
-      font-size: 2rem;
+      bottom: 20px;
+      font-size: 1.8rem;
       color: #FFFFFF;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -188,22 +194,22 @@
       border: 2px solid #F9ECEE;
       cursor: pointer;
       z-index: 1000;
-      animation: floatButterfly 2s infinite ease-in-out;
+      animation: floatButterfly 2.2s infinite ease-in-out;
       transition: opacity 0.3s ease;
     }
 
     @keyframes floatButterfly {
-      0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
-      50% { transform: translateX(-50%) translateY(12px) rotate(3deg); }
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
+      50% { transform: translateX(-50%) translateY(14px) rotate(5deg); }
     }
 
     .floating-flower {
       position: absolute;
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       background-size: contain;
       background-repeat: no-repeat;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237A1C29' opacity='0.25'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4C14 4.7 13.6 5.3 13 5.7C14.1 6.3 15 7.4 15 8.7C15 9.4 14.7 10 14.2 10.5C15.3 11.1 16 12.3 16 13.7C16 15.5 14.5 17 12.7 17H12C10.3 17 9 15.7 9 14C9 13.1 9.4 12.3 10 11.7C9.4 11.2 9 10.4 9 9.5C9 8.2 9.9 7.1 11 6.5C10.4 6.1 10 5.4 10 4.6C10 3.2 11.2 2 12.7 2H12Z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237A1C29' opacity='0.3'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4C14 4.7 13.6 5.3 13 5.7C14.1 6.3 15 7.4 15 8.7C15 9.4 14.7 10 14.2 10.5C15.3 11.1 16 12.3 16 13.7C16 15.5 14.5 17 12.7 17H12C10.3 17 9 15.7 9 14C9 13.1 9.4 12.3 10 11.7C9.4 11.2 9 10.4 9 9.5C9 8.2 9.9 7.1 11 6.5C10.4 6.1 10 5.4 10 4.6C10 3.2 11.2 2 12.7 2H12Z'/%3E%3C/svg%3E");
       animation: floatFlower linear infinite;
       z-index: 1;
       pointer-events: none;
@@ -211,15 +217,15 @@
 
     @keyframes floatFlower {
       0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.6; }
-      80% { opacity: 0.6; }
+      20% { opacity: 0.7; }
+      80% { opacity: 0.7; }
       100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
     }
 
     .star {
       position: absolute;
-      width: 15px;
-      height: 15px;
+      width: 16px;
+      height: 16px;
       background: gold;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       animation: fall linear forwards;
@@ -239,21 +245,14 @@
 
   <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
 
-  <!-- القسم الأول -->
+  <!-- القسم الأول: الصورة الأولى (نظيفة، والسايت يكتب العنوان والتقويم فوقها أو تحته) -->
   <div class="story-section" id="section-1">
-    <div class="container">
-      <img id="img-1" alt="Photo 1" class="story-img">
-    </div>
-  </div>
-
-  <!-- القسم الثاني -->
-  <div class="story-section" id="section-2">
     <div class="container">
       <div class="top-bunting">🚩 🔻 🚩 🔻 🚩</div>
       <div class="birthday-title">Dear 3amory</div>
-      <div class="birthday-subtitle">It's your 35th Birthday</div>
+      <div class="birthday-subtitle">October 2026</div>
       
-      <img id="img-2" alt="Photo 2" class="story-img">
+      <img id="img-1" alt="Photo 1" class="story-img">
 
       <div class="calendar-box">
         <div class="calendar-header">October 2026</div>
@@ -271,17 +270,28 @@
     </div>
   </div>
 
-  <!-- القسم الثالث -->
+  <!-- القسم الثاني: الصورة الثانية (طفولته وكيكة عيد الميلاد) -->
+  <div class="story-section" id="section-2">
+    <div class="container">
+      <div class="top-bunting">✨ 🎂 ✨</div>
+      <img id="img-2" alt="Photo 2" class="story-img">
+      <div class="footer-greeting">ذكريات أحلى أيام الطفولة ✨</div>
+    </div>
+  </div>
+
+  <!-- القسم الثالث: الصورة الثالثة -->
   <div class="story-section" id="section-3">
     <div class="container">
       <img id="img-3" alt="Photo 3" class="story-img">
     </div>
   </div>
 
-  <!-- القسم الرابع والأخير -->
+  <!-- القسم الرابع والأخير: الصورة الرابعة مع الاحتفال والبهجة -->
   <div class="story-section" id="section-4">
     <div class="container">
+      <div class="top-bunting">🎉 ✨ 🎂 ✨ 🎉</div>
       <img id="img-4" alt="Photo 4" class="story-img">
+      <div class="footer-greeting">Happy Birthday My Love! ❤️</div>
     </div>
   </div>
 
@@ -294,10 +304,10 @@
         const flower = document.createElement('div');
         flower.className = 'floating-flower';
         flower.style.left = Math.random() * window.innerWidth + 'px';
-        flower.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        flower.style.animationDuration = (Math.random() * 4 + 5) + 's';
         document.body.appendChild(flower);
-        setTimeout(() => flower.remove(), 11000);
-      }, 900);
+        setTimeout(() => flower.remove(), 9000);
+      }, 700);
     }
 
     window.onload = function() {
@@ -312,10 +322,10 @@
       document.addEventListener('click', playMusicOnce);
       document.addEventListener('touchstart', playMusicOnce);
 
-      loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1']);
-      loadSmartImage('img-2', ['Birthday 3amory 🎉', 'photo2', 'Photo2', 'photo 2', '2']);
-      loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3']);
-      loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4']);
+      loadSmartImage('img-1', ['Photo1', 'photo1', 'Photo 1', 'photo 1', '1']);
+      loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
+      loadSmartImage('img-3', ['Photo3', 'photo3', 'Photo 3', 'photo 3', '3']);
+      loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
     };
 
     function scrollToNext() {
@@ -348,23 +358,38 @@
     function triggerFinalCelebration() {
       createFallingStars();
       confetti({
-        particleCount: 150,
-        spread: 140,
+        particleCount: 200,
+        spread: 160,
         origin: { y: 0.6 },
-        colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#FF69B4']
+        colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#FF69B4', '#FF4500']
       });
+      
+      setTimeout(() => {
+        confetti({
+          particleCount: 120,
+          angle: 60,
+          spread: 80,
+          origin: { x: 0, y: 0.5 }
+        });
+        confetti({
+          particleCount: 120,
+          angle: 120,
+          spread: 80,
+          origin: { x: 1, y: 0.5 }
+        });
+      }, 400);
     }
 
     function createFallingStars() {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 50; i++) {
         setTimeout(() => {
           const star = document.createElement('div');
           star.className = 'star';
           star.style.left = Math.random() * window.innerWidth + 'px';
-          star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          star.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
           document.body.appendChild(star);
           setTimeout(() => star.remove(), 4000);
-        }, i * 120);
+        }, i * 80);
       }
     }
 
