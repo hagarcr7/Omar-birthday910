@@ -173,7 +173,7 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-3')">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة (الظرف اللي عليه قلب وفيديو 3.mp4) -->
+  <!-- الصفحة الثالثة (الظرف اللي عليه قلب والفيديو الذكي) -->
   <div class="story-section" id="sec-3">
     <div class="container envelope-screen">
       <div id="envelope-wrapper" class="envelope-box" onclick="openEnvelope()">
@@ -181,18 +181,18 @@
           ✉️
           <span class="envelope-heart">❤️</span>
         </div>
-        <div class="envelope-text">اضغط هنا ✨</div>
+        <div class="envelope-text">اضغط هنا  ✨</div>
       </div>
       <div id="video-wrapper" class="video-container">
-        <video id="my-video" class="story-video" controls playsinline>
-          <source src="3.mp4" type="video/mp4">
+        <video id="my-video" class="story-video" controls playsinline preload="auto">
+          متصفحك لا يدعم عرض الفيديو.
         </video>
       </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
   </div>
 
-  <!-- الصفحة الرابعة والأخيرة (الصواريخ تشتغل تلقائياً بالسكرول) -->
+  <!-- الصفحة الرابعة والأخيرة -->
   <div class="story-section" id="sec-4">
     <div class="container">
       <img id="img-4" class="story-img" alt="4">
@@ -202,7 +202,6 @@
   <script>
     let hasCelebrated = false;
 
-    // تشغيل الموسيقى مع أول ضغطة في الصفحة
     document.addEventListener('click', function() {
       const music = document.getElementById('bg-music');
       if(music.paused) {
@@ -214,16 +213,45 @@
       document.getElementById('envelope-wrapper').style.display = 'none';
       const vidWrapper = document.getElementById('video-wrapper');
       vidWrapper.style.display = 'block';
-      const vid = document.getElementById('my-video');
-      vid.play().catch(e => {});
+      loadSmartVideo();
     }
 
-    // الانتقال السلس عند الضغط على السهم
+    function loadSmartVideo() {
+      const vidElem = document.getElementById('my-video');
+      // قائمة احتمالات أسماء الفيديو على جيت هب
+      const videoNames = ['3', 'lv_765146364632916302', 'video3', 'vid3'];
+      const exts = ['mp4', 'MP4', 'mov', 'MOV', 'webm'];
+      let nIdx = 0;
+
+      function tryNextName() {
+        if (nIdx >= videoNames.length) return;
+        let base = videoNames[nIdx];
+        let eIdx = 0;
+
+        function tryNextExt() {
+          if (eIdx >= exts.length) { nIdx++; tryNextName(); return; }
+          let src = base + '.' + exts[eIdx++];
+          
+          let testVid = document.createElement('video');
+          testVid.src = src;
+          testVid.onloadeddata = function() {
+            vidElem.src = src;
+            vidElem.load();
+            vidElem.play().catch(e => {});
+          };
+          testVid.onerror = function() {
+            tryNextExt();
+          };
+        }
+        tryNextExt();
+      }
+      tryNextName();
+    }
+
     function scrollToSec(secId) {
       document.getElementById(secId).scrollIntoView({ behavior: 'smooth' });
     }
 
-    // مراقبة السكرول لتشغيل الصواريخ أول ما آخر صفحة تظهر
     window.addEventListener('scroll', function() {
       const sec4 = document.getElementById('sec-4');
       if (sec4 && !hasCelebrated) {
