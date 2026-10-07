@@ -66,7 +66,6 @@
       display: block;
     }
 
-    /* تأثير الهزة الخفيفة للعناصر الإرشادية */
     .interactive-box {
       background: linear-gradient(135deg, #7A1C29 0%, #5A121D 100%);
       width: 100%;
@@ -97,17 +96,17 @@
       color: #FFD700;
     }
 
-    /* إطار الفيديو الكبير */
+    /* تكبير إطار الفيديو ليملى الشاشة وبشكل أنيق جداً */
     .video-frame-container {
       display: none;
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       background: #111;
-      border-radius: 24px;
-      padding: 12px;
+      border-radius: 20px;
+      padding: 8px;
       box-shadow: 0 10px 30px rgba(122, 28, 41, 0.2);
       border: 3px solid var(--burgundy);
-      margin: 10px auto;
+      margin: 5px auto;
       animation: fadeIn 0.5s ease;
     }
 
@@ -118,10 +117,11 @@
 
     .video-frame {
       width: 100%;
-      height: 320px;
-      border-radius: 16px;
+      height: 380px; /* زيادة الطول عشان يبان ضخم ومريح */
+      border-radius: 14px;
       border: none;
       background: #000;
+      pointer-events: none; /* يمنع اللمس المباشر اللي بيظهر أزرار جوجل درايف */
     }
 
     .hidden-content {
@@ -193,14 +193,15 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-3')">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة: ظرف الفيديو الكبير مع خفض صوت المزيكا -->
+  <!-- الصفحة الثالثة: ظرف الفيديو الكبير النظيف بدون أزرار وقت -->
   <div class="story-section" id="sec-3">
     <div class="container">
       <div id="box-3" class="interactive-box" onclick="revealVideo()">
         <div class="interactive-icon">💌</div>
       </div>
       <div id="videoContainer" class="video-frame-container">
-        <iframe id="myVideo" class="video-frame" src="" data-src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview" allow="autoplay"></iframe>
+        <!-- تم إضافة parameters لمنع ظهور أزرار التحسس ووقت جوجل درايف قدر الإمكان -->
+        <iframe id="myVideo" class="video-frame" src="" data-src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview?autoplay=1&controls=0&disablekb=1" allow="autoplay"></iframe>
       </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
@@ -241,13 +242,11 @@
       }
     }, { once: true });
 
-    // دالة لفتح الصور العادية
     function revealContent(num) {
       document.getElementById('box-' + num).style.display = 'none';
       document.getElementById('content-' + num).style.display = 'block';
     }
 
-    // دالة خاصة لفتح الفيديو وتوطية المزيكا
     function revealVideo() {
       const box = document.getElementById('box-3');
       const videoContainer = document.getElementById('videoContainer');
@@ -255,7 +254,7 @@
       const music = document.getElementById('bg-music');
 
       if(music) {
-        music.volume = 0.15; // توطية صوت الخلفية
+        music.volume = 0.15;
       }
 
       box.style.display = 'none';
