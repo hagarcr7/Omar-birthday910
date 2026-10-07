@@ -66,39 +66,27 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 30px 10px;
+      padding: 20px 10px;
     }
 
-    .envelope-box {
-      cursor: pointer;
-      text-align: center;
-      transition: transform 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-
-    .envelope-box:active {
-      transform: scale(0.95);
-    }
-
-    .envelope-icon {
-      font-size: 80px;
+    .video-frame-container {
+      width: 100%;
+      max-width: 320px;
+      background: #111;
+      border-radius: 24px;
+      padding: 12px;
+      box-shadow: 0 10px 30px rgba(122, 28, 41, 0.2);
+      border: 3px solid var(--burgundy);
+      margin: 10px auto;
       position: relative;
-      display: inline-block;
     }
 
-    .envelope-heart {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 35px;
-    }
-
-    .envelope-text {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--burgundy);
+    .video-frame {
+      width: 100%;
+      height: 240px;
+      border-radius: 16px;
+      border: none;
+      background: #000;
     }
 
     .arrow-btn {
@@ -143,7 +131,7 @@
 
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <!-- الصفحة الأولى -->
+  <!-- الصفحة الأولى (صورة 1) -->
   <div class="story-section" id="sec-1">
     <div class="container">
       <img id="img-1" class="story-img" alt="1">
@@ -151,7 +139,7 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-2')">⬇</button>
   </div>
 
-  <!-- الصفحة الثانية -->
+  <!-- الصفحة الثانية (صورة 2) -->
   <div class="story-section" id="sec-2">
     <div class="container">
       <img id="img-2" class="story-img" alt="2">
@@ -159,22 +147,26 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-3')">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة (الظرف بينقل مباشرة لفيديو جوجل درايف) -->
+  <!-- الصفحة الثالثة (إطار الفيديو فقط من غير أي كلام فوقه) -->
   <div class="story-section" id="sec-3">
     <div class="container envelope-screen">
-      <a href="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/view?usp=drivesdk" target="_blank" class="envelope-box">
-        <div class="envelope-icon">
-          ✉️
-          <span class="envelope-heart">❤️</span>
-        </div>
-        <div class="envelope-text">دوس هنا   ✨</div>
-      </a>
+      <div class="video-frame-container">
+        <iframe class="video-frame" src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview" allow="autoplay"></iframe>
+      </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
   </div>
 
-  <!-- الصفحة الرابعة والأخيرة -->
+  <!-- الصفحة الرابعة (صورة 3) -->
   <div class="story-section" id="sec-4">
+    <div class="container">
+      <img id="img-3" class="story-img" alt="3">
+    </div>
+    <button class="arrow-btn" onclick="scrollToSec('sec-5')">⬇</button>
+  </div>
+
+  <!-- الصفحة الخامسة والأخيرة (صورة 4 مع الاحتفال) -->
+  <div class="story-section" id="sec-5">
     <div class="container">
       <img id="img-4" class="story-img" alt="4">
     </div>
@@ -195,9 +187,9 @@
     }
 
     window.addEventListener('scroll', function() {
-      const sec4 = document.getElementById('sec-4');
-      if (sec4 && !hasCelebrated) {
-        const rect = sec4.getBoundingClientRect();
+      const sec5 = document.getElementById('sec-5');
+      if (sec5 && !hasCelebrated) {
+        const rect = sec5.getBoundingClientRect();
         if (rect.top <= window.innerHeight / 1.5) {
           hasCelebrated = true;
           launchFireworks();
@@ -249,6 +241,7 @@
     window.onload = function() {
       loadSmartImage('img-1', ['Photo1', 'photo1', 'Photo 1', 'photo 1', '1']);
       loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
+      loadSmartImage('img-3', ['Photo3', 'photo3', 'Photo 3', 'photo 3', '3']);
       loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
     };
 
