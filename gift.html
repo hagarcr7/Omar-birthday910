@@ -32,7 +32,7 @@
       position: relative;
     }
 
-    /* خلفية الزينة والنجوم المستمرة في كل الصفحات */
+    /* خلفية الزينة والنجوم المستمرة */
     .bg-sparkle {
       position: fixed;
       top: 0;
@@ -79,40 +79,97 @@
       position: relative;
     }
 
+    /* الزينة اللي فوق السايت */
+    .top-bunting {
+      font-size: 1.5rem;
+      color: var(--burgundy);
+      margin-bottom: 12px;
+      letter-spacing: 4px;
+    }
+
+    .birthday-title {
+      color: var(--burgundy);
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .birthday-subtitle {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
     .story-img {
       width: 100%;
-      max-height: 480px;
+      max-height: 350px;
       object-fit: contain;
       border-radius: 16px;
       background-color: #FAF8F5;
-      border: 2px solid var(--burgundy);
-      box-shadow: 0 8px 25px rgba(122, 28, 41, 0.12);
+      margin-bottom: 15px;
     }
 
-    /* تأثير تجميع الصورة الأولى */
-    .assembling-effect {
-      animation: assembleAnimation 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    /* تصميم التقويم التفاعلي */
+    .calendar-box {
+      margin-top: 10px;
+      background: #FAF8F5;
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid #EAE3D9;
     }
 
-    @keyframes assembleAnimation {
-      0% {
-        opacity: 0;
-        transform: scale(0.3) rotate(-15deg) translateY(-50px);
-        filter: blur(10px);
-      }
-      50% {
-        opacity: 0.6;
-        transform: scale(1.08) rotate(5deg) translateY(10px);
-        filter: blur(3px);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg) translateY(0);
-        filter: blur(0);
-      }
+    .calendar-header {
+      color: var(--burgundy);
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 8px;
     }
 
-    /* السهم الطاير زي الفراشة */
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      font-size: 0.85rem;
+    }
+
+    .calendar-grid span {
+      padding: 4px;
+      text-align: center;
+      position: relative;
+    }
+
+    .calendar-grid .day-name {
+      color: #888;
+      font-weight: bold;
+    }
+
+    /* يوم 9 عليه قلب */
+    .calendar-grid .heart-day {
+      background-color: #F9ECEE;
+      color: var(--burgundy);
+      font-weight: bold;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .calendar-grid .heart-day::after {
+      content: '❤️';
+      position: absolute;
+      font-size: 0.6rem;
+      top: -2px;
+      right: 0;
+    }
+
+    .footer-greeting {
+      margin-top: 15px;
+      color: var(--burgundy);
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    /* السهم الطاير */
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
@@ -140,7 +197,6 @@
       50% { transform: translateX(-50%) translateY(12px) rotate(3deg); }
     }
 
-    /* ورد متحرك في الخلفية */
     .floating-flower {
       position: absolute;
       width: 22px;
@@ -178,12 +234,9 @@
 </head>
 <body>
 
-  <!-- خلفية الزينة والنجوم المستمرة -->
   <div class="bg-sparkle"></div>
-
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <!-- السهم الطاير -->
   <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
 
   <!-- القسم الأول -->
@@ -196,7 +249,25 @@
   <!-- القسم الثاني -->
   <div class="story-section" id="section-2">
     <div class="container">
+      <div class="top-bunting">🚩 🔻 🚩 🔻 🚩</div>
+      <div class="birthday-title">Dear 3amory</div>
+      <div class="birthday-subtitle">It's your 35th Birthday</div>
+      
       <img id="img-2" alt="Photo 2" class="story-img">
+
+      <div class="calendar-box">
+        <div class="calendar-header">October 2026</div>
+        <div class="calendar-grid">
+          <span class="day-name">Sun</span><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span>
+          <span></span><span></span><span></span><span></span><span>1</span><span>2</span><span>3</span>
+          <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span class="heart-day">9</span><span>10</span>
+          <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+          <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+          <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+        </div>
+      </div>
+
+      <div class="footer-greeting">كل سنة وانت حبيبي ...</div>
     </div>
   </div>
 
@@ -207,7 +278,7 @@
     </div>
   </div>
 
-  <!-- القسم الرابع والأخير (الهدية والفرقعة) -->
+  <!-- القسم الرابع والأخير -->
   <div class="story-section" id="section-4">
     <div class="container">
       <img id="img-4" alt="Photo 4" class="story-img">
@@ -241,10 +312,10 @@
       document.addEventListener('click', playMusicOnce);
       document.addEventListener('touchstart', playMusicOnce);
 
-      loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1'], true);
-      loadSmartImage('img-2', ['Photo 2', 'photo2', 'Photo2', 'photo 2', '2'], false);
-      loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3'], false);
-      loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4'], false);
+      loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1']);
+      loadSmartImage('img-2', ['Birthday 3amory 🎉', 'photo2', 'Photo2', 'photo 2', '2']);
+      loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3']);
+      loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4']);
     };
 
     function scrollToNext() {
@@ -297,7 +368,7 @@
       }
     }
 
-    function loadSmartImage(imgId, namesList, applyAssembleEffect) {
+    function loadSmartImage(imgId, namesList) {
       const imgElem = document.getElementById(imgId);
       const exts = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
       let nIdx = 0;
@@ -309,12 +380,7 @@
           if (eIdx >= exts.length) { nIdx++; tryNextName(); return; }
           let src = base + '.' + exts[eIdx++];
           let testImg = new Image();
-          testImg.onload = () => {
-            imgElem.src = src;
-            if (applyAssembleEffect) {
-              imgElem.classList.add('assembling-effect');
-            }
-          };
+          testImg.onload = () => imgElem.src = src;
           testImg.onerror = () => tryNextExt();
           testImg.src = src;
         }
