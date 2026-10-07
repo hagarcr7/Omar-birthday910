@@ -48,25 +48,26 @@
       opacity: 0.2;
     }
 
+    /* مسافات معقولة ومش مبالغ فيها بين الصور */
     .story-section {
       width: 100%;
       max-width: 400px;
-      min-height: 110vh;
+      min-height: 95vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      margin-bottom: 80px;
+      margin-bottom: 40px;
       z-index: 2;
     }
 
     .container {
       background-color: var(--card-bg);
       border-radius: 24px;
-      padding: 22px 16px;
+      padding: 20px 16px;
       width: 100%;
-      box-shadow: 0 15px 35px rgba(122, 28, 41, 0.12);
+      box-shadow: 0 10px 30px rgba(122, 28, 41, 0.1);
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
@@ -74,31 +75,31 @@
 
     .birthday-title-top {
       color: var(--burgundy);
-      font-size: 1.9rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       font-family: 'Pacifico', cursive, sans-serif;
       letter-spacing: 1px;
     }
 
     .story-img {
       width: 100%;
-      max-height: 380px;
+      max-height: 360px;
       object-fit: contain;
       border-radius: 16px;
       background-color: #FAF8F5;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .calendar-box {
-      margin-top: 12px;
+      margin-top: 10px;
       background: #FAF8F5;
       padding: 12px;
       border-radius: 14px;
       border: 1px solid #EAE3D9;
       opacity: 0;
       transform: translateY(15px);
-      transition: all 0.8s ease;
+      transition: all 0.6s ease;
     }
 
     .calendar-box.visible {
@@ -108,7 +109,7 @@
 
     .calendar-header {
       color: var(--burgundy);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: bold;
       font-family: 'Pacifico', cursive, sans-serif;
       margin-bottom: 6px;
@@ -127,7 +128,7 @@
       position: relative;
       opacity: 0;
       transform: scale(0.5);
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
     }
 
     .calendar-grid span.show-day {
@@ -155,7 +156,7 @@
     .calendar-grid .heart-day::after {
       content: '❤️';
       position: absolute;
-      font-size: 0.55rem;
+      font-size: 0.5rem;
       top: -2px;
       right: 0;
     }
@@ -163,10 +164,9 @@
     .typing-text {
       margin-top: 12px;
       color: var(--burgundy);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
-      min-height: 35px;
       border-left: 2px solid var(--burgundy);
       white-space: nowrap;
       overflow: hidden;
@@ -189,16 +189,16 @@
       left: 50%;
       transform: translateX(-50%);
       bottom: 25px;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #FFFFFF;
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--burgundy), #5A121D);
-      box-shadow: 0 0 20px rgba(122, 28, 41, 0.7);
+      box-shadow: 0 0 15px rgba(122, 28, 41, 0.7);
       border: 2px solid #F9ECEE;
       cursor: pointer;
       z-index: 1000;
@@ -208,13 +208,13 @@
 
     @keyframes floatButterfly {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(12px); }
+      50% { transform: translateX(-50%) translateY(10px); }
     }
 
     .star {
       position: absolute;
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
       background: gold;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       animation: fall linear forwards;
@@ -242,23 +242,23 @@
     </div>
   </div>
 
-  <!-- القسم الثاني (عمر والتقويم والكتابة التلقائية) -->
+  <!-- القسم الثاني (ديير عموري وتصميمك الأصلي للتقويم تحتها مباشرة) -->
   <div class="story-section" id="section-2" data-animated="false">
     <div class="container">
-      <div id="typed-title" class="birthday-title-top" style="font-size: 1.6rem; width: 0; overflow: hidden; white-space: nowrap; margin: 0 auto 15px auto;">Dear 3amory</div>
-      <div style="color: #444; font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; font-family: 'Pacifico', cursive;">October 2026</div>
+      <div id="typed-title" class="birthday-title-top" style="width: 0; overflow: hidden; white-space: nowrap; margin: 0 auto 12px auto;">Dear 3amory</div>
       
       <img id="img-2" alt="Photo 2" class="story-img">
 
       <div class="calendar-box" id="cal-box">
         <div class="calendar-header">October 2026</div>
         <div class="calendar-grid" id="cal-grid">
-          <span class="day-name">Sun</span><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span>
-          <span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num">1</span><span class="date-num">2</span><span class="date-num">3</span>
-          <span class="date-num">4</span><span class="date-num">5</span><span class="date-num">6</span><span class="date-num">7</span><span class="date-num">8</span><span class="date-num heart-day">9</span><span class="date-num">10</span>
-          <span class="date-num">11</span><span class="date-num">12</span><span class="date-num">13</span><span class="date-num">14</span><span class="date-num">15</span><span class="date-num">16</span><span class="date-num">17</span>
-          <span class="date-num">18</span><span class="date-num">19</span><span class="date-num">20</span><span class="date-num">21</span><span class="date-num">22</span><span class="date-num">23</span><span class="date-num">24</span>
-          <span class="date-num">25</span><span class="date-num">26</span><span class="date-num">27</span><span class="date-num">28</span><span class="date-num">29</span><span class="date-num">30</span><span class="date-num">31</span>
+          <!-- ترتيب الأيام مطابق لتصميمك (السبت لـ الأحد) -->
+          <span class="day-name">Sat</span><span class="day-name">Fri</span><span class="day-name">Thu</span><span class="day-name">Wed</span><span class="day-name">Tue</span><span class="day-name">Mon</span><span class="day-name">Sun</span>
+          <span class="date-num">3</span><span class="date-num">2</span><span class="date-num">1</span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span>
+          <span class="date-num">10</span><span class="date-num heart-day">9</span><span class="date-num">8</span><span class="date-num">7</span><span class="date-num">6</span><span class="date-num">5</span><span class="date-num">4</span>
+          <span class="date-num">17</span><span class="date-num">16</span><span class="date-num">15</span><span class="date-num">14</span><span class="date-num">13</span><span class="date-num">12</span><span class="date-num">11</span>
+          <span class="date-num">24</span><span class="date-num">23</span><span class="date-num">22</span><span class="date-num">21</span><span class="date-num">20</span><span class="date-num">19</span><span class="date-num">18</span>
+          <span class="date-num">31</span><span class="date-num">30</span><span class="date-num">29</span><span class="date-num">28</span><span class="date-num">27</span><span class="date-num">26</span><span class="date-num">25</span>
         </div>
       </div>
 
@@ -277,7 +277,7 @@
   <div class="story-section" id="section-4">
     <div class="container">
       <img id="img-4" alt="Photo 4" class="story-img">
-      <div class="footer-greeting" style="margin-top:12px; color:var(--burgundy); font-size:1.25rem; font-weight:bold; font-family:'Amiri',serif;">Happy Birthday My Love! ❤️</div>
+      <div style="margin-top:10px; color:var(--burgundy); font-size:1.2rem; font-weight:bold; font-family:'Amiri',serif;">Happy Birthday My Love! ❤️</div>
     </div>
   </div>
 
@@ -330,7 +330,6 @@
       }
     }
 
-    // مراقبة الوصول للقسم التاني عشان يبدأ يشغل الأنيميشن لوحده
     function setupScrollObserver() {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -348,11 +347,9 @@
     }
 
     function startSection2Animations() {
-      // 1. كتابة Dear 3amory
       const titleElem = document.getElementById('typed-title');
-      titleElem.style.animation = "typingEffect 1.2s steps(15, end) forwards";
+      titleElem.style.animation = "typingEffect 1s steps(15, end) forwards";
 
-      // 2. ظهور التقويم وتتابع أرقامه
       setTimeout(() => {
         const calBox = document.getElementById('cal-box');
         calBox.classList.add('visible');
@@ -361,15 +358,14 @@
         dateNums.forEach((num, index) => {
           setTimeout(() => {
             num.classList.add('show-day');
-          }, index * 40); // سرعة ظهور الأرقام ورا بعضها
+          }, index * 30);
         });
-      }, 1200);
+      }, 1000);
 
-      // 3. كتابة جملة "كل سنة وانت حبيبي ..." في الآخر
       setTimeout(() => {
         const footerElem = document.getElementById('typed-footer');
         footerElem.classList.add('start-typing');
-      }, 2800);
+      }, 2500);
     }
 
     function triggerFinalCelebration() {
@@ -383,7 +379,7 @@
     }
 
     function createFallingStars() {
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 40; i++) {
         setTimeout(() => {
           const star = document.createElement('div');
           star.className = 'star';
