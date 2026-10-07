@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday 3amory 🎉</title>
-  <!-- استيراد خطوط مزخرفة وجميلة تناسب التصميم -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Pacifico&family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
@@ -29,12 +28,11 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 30px 15px;
+      padding: 20px 15px;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* خلفية مطرقعة ومبهجة */
     .bg-sparkle {
       position: fixed;
       top: 0;
@@ -45,29 +43,21 @@
       z-index: 0;
       background-image: 
         radial-gradient(circle, #7A1C29 2px, transparent 2px),
-        radial-gradient(circle, #FFD700 2px, transparent 2px),
-        radial-gradient(circle, #FF69B4 1.5px, transparent 1.5px);
-      background-size: 50px 50px;
-      background-position: 0 0, 25px 25px, 12px 37px;
-      opacity: 0.25;
-      animation: sparkleMove 15s linear infinite;
-    }
-
-    @keyframes sparkleMove {
-      0% { background-position: 0 0, 25px 25px, 12px 37px; }
-      100% { background-position: 100px 100px, 125px 125px, 112px 137px; }
+        radial-gradient(circle, #FFD700 2px, transparent 2px);
+      background-size: 60px 60px;
+      opacity: 0.2;
     }
 
     .story-section {
       width: 100%;
       max-width: 400px;
-      min-height: 90vh;
+      min-height: 110vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 80px;
       z-index: 2;
     }
 
@@ -82,33 +72,18 @@
       position: relative;
     }
 
-    .top-bunting {
-      font-size: 1.5rem;
+    .birthday-title-top {
       color: var(--burgundy);
-      margin-bottom: 10px;
-      letter-spacing: 4px;
-    }
-
-    /* خطوط مشابهة لخطوط الصورة المزخرفة */
-    .birthday-title {
-      color: var(--burgundy);
-      font-size: 1.6rem;
+      font-size: 1.9rem;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 15px;
       font-family: 'Pacifico', cursive, sans-serif;
-    }
-
-    .birthday-subtitle {
-      color: #444;
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      font-family: 'Pacifico', cursive, sans-serif;
+      letter-spacing: 1px;
     }
 
     .story-img {
       width: 100%;
-      max-height: 330px;
+      max-height: 380px;
       object-fit: contain;
       border-radius: 16px;
       background-color: #FAF8F5;
@@ -116,11 +91,19 @@
     }
 
     .calendar-box {
-      margin-top: 8px;
+      margin-top: 12px;
       background: #FAF8F5;
-      padding: 10px;
+      padding: 12px;
       border-radius: 14px;
       border: 1px solid #EAE3D9;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.8s ease;
+    }
+
+    .calendar-box.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .calendar-header {
@@ -142,11 +125,21 @@
       padding: 3px;
       text-align: center;
       position: relative;
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.3s ease;
+    }
+
+    .calendar-grid span.show-day {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .calendar-grid .day-name {
       color: #888;
       font-weight: bold;
+      opacity: 1 !important;
+      transform: none !important;
     }
 
     .calendar-grid .heart-day {
@@ -167,21 +160,36 @@
       right: 0;
     }
 
-    .footer-greeting {
+    .typing-text {
       margin-top: 12px;
       color: var(--burgundy);
       font-size: 1.25rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
+      min-height: 35px;
+      border-left: 2px solid var(--burgundy);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      margin-right: auto;
+      margin-left: auto;
     }
 
-    /* السهم اللي بيطير زي الفراشة */
+    @keyframes typingEffect {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .start-typing {
+      animation: typingEffect 2s steps(30, end) forwards;
+    }
+
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 20px;
-      font-size: 1.8rem;
+      bottom: 25px;
+      font-size: 1.6rem;
       color: #FFFFFF;
       width: 48px;
       height: 48px;
@@ -190,36 +198,17 @@
       justify-content: center;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--burgundy), #5A121D);
-      box-shadow: 0 0 20px rgba(122, 28, 41, 0.7), 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 0 20px rgba(122, 28, 41, 0.7);
       border: 2px solid #F9ECEE;
       cursor: pointer;
       z-index: 1000;
-      animation: floatButterfly 2.2s infinite ease-in-out;
+      animation: floatButterfly 2s infinite ease-in-out;
       transition: opacity 0.3s ease;
     }
 
     @keyframes floatButterfly {
-      0%, 100% { transform: translateX(-50%) translateY(0) rotate(-5deg); }
-      50% { transform: translateX(-50%) translateY(14px) rotate(5deg); }
-    }
-
-    .floating-flower {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237A1C29' opacity='0.3'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4C14 4.7 13.6 5.3 13 5.7C14.1 6.3 15 7.4 15 8.7C15 9.4 14.7 10 14.2 10.5C15.3 11.1 16 12.3 16 13.7C16 15.5 14.5 17 12.7 17H12C10.3 17 9 15.7 9 14C9 13.1 9.4 12.3 10 11.7C9.4 11.2 9 10.4 9 9.5C9 8.2 9.9 7.1 11 6.5C10.4 6.1 10 5.4 10 4.6C10 3.2 11.2 2 12.7 2H12Z'/%3E%3C/svg%3E");
-      animation: floatFlower linear infinite;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    @keyframes floatFlower {
-      0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
-      20% { opacity: 0.7; }
-      80% { opacity: 0.7; }
-      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(12px); }
     }
 
     .star {
@@ -245,53 +234,50 @@
 
   <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
 
-  <!-- القسم الأول: الصورة الأولى (نظيفة، والسايت يكتب العنوان والتقويم فوقها أو تحته) -->
+  <!-- القسم الأول -->
   <div class="story-section" id="section-1">
     <div class="container">
-      <div class="top-bunting">🚩 🔻 🚩 🔻 🚩</div>
-      <div class="birthday-title">Dear 3amory</div>
-      <div class="birthday-subtitle">October 2026</div>
-      
+      <div class="birthday-title-top">HAPPY BIRTHDAY</div>
       <img id="img-1" alt="Photo 1" class="story-img">
+    </div>
+  </div>
 
-      <div class="calendar-box">
+  <!-- القسم الثاني (عمر والتقويم والكتابة التلقائية) -->
+  <div class="story-section" id="section-2" data-animated="false">
+    <div class="container">
+      <div id="typed-title" class="birthday-title-top" style="font-size: 1.6rem; width: 0; overflow: hidden; white-space: nowrap; margin: 0 auto 15px auto;">Dear 3amory</div>
+      <div style="color: #444; font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; font-family: 'Pacifico', cursive;">October 2026</div>
+      
+      <img id="img-2" alt="Photo 2" class="story-img">
+
+      <div class="calendar-box" id="cal-box">
         <div class="calendar-header">October 2026</div>
-        <div class="calendar-grid">
+        <div class="calendar-grid" id="cal-grid">
           <span class="day-name">Sun</span><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span>
-          <span></span><span></span><span></span><span></span><span>1</span><span>2</span><span>3</span>
-          <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span class="heart-day">9</span><span>10</span>
-          <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
-          <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
-          <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+          <span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num">1</span><span class="date-num">2</span><span class="date-num">3</span>
+          <span class="date-num">4</span><span class="date-num">5</span><span class="date-num">6</span><span class="date-num">7</span><span class="date-num">8</span><span class="date-num heart-day">9</span><span class="date-num">10</span>
+          <span class="date-num">11</span><span class="date-num">12</span><span class="date-num">13</span><span class="date-num">14</span><span class="date-num">15</span><span class="date-num">16</span><span class="date-num">17</span>
+          <span class="date-num">18</span><span class="date-num">19</span><span class="date-num">20</span><span class="date-num">21</span><span class="date-num">22</span><span class="date-num">23</span><span class="date-num">24</span>
+          <span class="date-num">25</span><span class="date-num">26</span><span class="date-num">27</span><span class="date-num">28</span><span class="date-num">29</span><span class="date-num">30</span><span class="date-num">31</span>
         </div>
       </div>
 
-      <div class="footer-greeting">كل سنة وانت حبيبي ...</div>
+      <div id="typed-footer" class="typing-text">كل سنة وانت حبيبي ...</div>
     </div>
   </div>
 
-  <!-- القسم الثاني: الصورة الثانية (طفولته وكيكة عيد الميلاد) -->
-  <div class="story-section" id="section-2">
-    <div class="container">
-      <div class="top-bunting">✨ 🎂 ✨</div>
-      <img id="img-2" alt="Photo 2" class="story-img">
-      <div class="footer-greeting">ذكريات أحلى أيام الطفولة ✨</div>
-    </div>
-  </div>
-
-  <!-- القسم الثالث: الصورة الثالثة -->
+  <!-- القسم الثالث -->
   <div class="story-section" id="section-3">
     <div class="container">
       <img id="img-3" alt="Photo 3" class="story-img">
     </div>
   </div>
 
-  <!-- القسم الرابع والأخير: الصورة الرابعة مع الاحتفال والبهجة -->
+  <!-- القسم الرابع والأخير -->
   <div class="story-section" id="section-4">
     <div class="container">
-      <div class="top-bunting">🎉 ✨ 🎂 ✨ 🎉</div>
       <img id="img-4" alt="Photo 4" class="story-img">
-      <div class="footer-greeting">Happy Birthday My Love! ❤️</div>
+      <div class="footer-greeting" style="margin-top:12px; color:var(--burgundy); font-size:1.25rem; font-weight:bold; font-family:'Amiri',serif;">Happy Birthday My Love! ❤️</div>
     </div>
   </div>
 
@@ -299,20 +285,7 @@
     let currentStep = 1;
     const totalSections = 4;
 
-    function createBackgroundFlowers() {
-      setInterval(() => {
-        const flower = document.createElement('div');
-        flower.className = 'floating-flower';
-        flower.style.left = Math.random() * window.innerWidth + 'px';
-        flower.style.animationDuration = (Math.random() * 4 + 5) + 's';
-        document.body.appendChild(flower);
-        setTimeout(() => flower.remove(), 9000);
-      }, 700);
-    }
-
     window.onload = function() {
-      createBackgroundFlowers();
-      
       const music = document.getElementById('bg-music');
       function playMusicOnce() {
         music.play().catch(e => console.log("Audio waiting"));
@@ -326,6 +299,8 @@
       loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
       loadSmartImage('img-3', ['Photo3', 'photo3', 'Photo 3', 'photo 3', '3']);
       loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
+
+      setupScrollObserver();
     };
 
     function scrollToNext() {
@@ -355,6 +330,48 @@
       }
     }
 
+    // مراقبة الوصول للقسم التاني عشان يبدأ يشغل الأنيميشن لوحده
+    function setupScrollObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.target.id === 'section-2') {
+            const isAnimated = entry.target.getAttribute('data-animated');
+            if (isAnimated === 'false') {
+              entry.target.setAttribute('data-animated', 'true');
+              startSection2Animations();
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      observer.observe(document.getElementById('section-2'));
+    }
+
+    function startSection2Animations() {
+      // 1. كتابة Dear 3amory
+      const titleElem = document.getElementById('typed-title');
+      titleElem.style.animation = "typingEffect 1.2s steps(15, end) forwards";
+
+      // 2. ظهور التقويم وتتابع أرقامه
+      setTimeout(() => {
+        const calBox = document.getElementById('cal-box');
+        calBox.classList.add('visible');
+
+        const dateNums = document.querySelectorAll('.date-num');
+        dateNums.forEach((num, index) => {
+          setTimeout(() => {
+            num.classList.add('show-day');
+          }, index * 40); // سرعة ظهور الأرقام ورا بعضها
+        });
+      }, 1200);
+
+      // 3. كتابة جملة "كل سنة وانت حبيبي ..." في الآخر
+      setTimeout(() => {
+        const footerElem = document.getElementById('typed-footer');
+        footerElem.classList.add('start-typing');
+      }, 2800);
+    }
+
     function triggerFinalCelebration() {
       createFallingStars();
       confetti({
@@ -363,21 +380,6 @@
         origin: { y: 0.6 },
         colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#FF69B4', '#FF4500']
       });
-      
-      setTimeout(() => {
-        confetti({
-          particleCount: 120,
-          angle: 60,
-          spread: 80,
-          origin: { x: 0, y: 0.5 }
-        });
-        confetti({
-          particleCount: 120,
-          angle: 120,
-          spread: 80,
-          origin: { x: 1, y: 0.5 }
-        });
-      }, 400);
     }
 
     function createFallingStars() {
