@@ -48,7 +48,6 @@
       opacity: 0.2;
     }
 
-    /* مسافات معقولة ومش مبالغ فيها بين الصور */
     .story-section {
       width: 100%;
       max-width: 400px;
@@ -58,14 +57,14 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       z-index: 2;
     }
 
     .container {
       background-color: var(--card-bg);
       border-radius: 24px;
-      padding: 20px 16px;
+      padding: 18px 14px;
       width: 100%;
       box-shadow: 0 10px 30px rgba(122, 28, 41, 0.1);
       text-align: center;
@@ -77,49 +76,49 @@
       color: var(--burgundy);
       font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 5px;
       font-family: 'Pacifico', cursive, sans-serif;
       letter-spacing: 1px;
     }
 
-    .story-img {
-      width: 100%;
-      max-height: 360px;
-      object-fit: contain;
-      border-radius: 16px;
-      background-color: #FAF8F5;
+    .birthday-subtitle {
+      color: #111111;
+      font-size: 1.1rem;
+      font-weight: 700;
       margin-bottom: 10px;
+      font-family: 'Cairo', sans-serif;
     }
 
-    .calendar-box {
-      margin-top: 10px;
-      background: #FAF8F5;
-      padding: 12px;
+    .story-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: contain;
       border-radius: 14px;
+      background-color: #FAF8F5;
+      margin-bottom: 8px;
+    }
+
+    .calendar-embedded {
+      background: #FAF8F5;
+      padding: 10px;
+      border-radius: 12px;
       border: 1px solid #EAE3D9;
+      margin-top: 5px;
       opacity: 0;
-      transform: translateY(15px);
+      transform: translateY(10px);
       transition: all 0.6s ease;
     }
 
-    .calendar-box.visible {
+    .calendar-embedded.visible {
       opacity: 1;
       transform: translateY(0);
-    }
-
-    .calendar-header {
-      color: var(--burgundy);
-      font-size: 1.15rem;
-      font-weight: bold;
-      font-family: 'Pacifico', cursive, sans-serif;
-      margin-bottom: 6px;
     }
 
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 3px;
-      font-size: 0.8rem;
+      gap: 2px;
+      font-size: 0.78rem;
     }
 
     .calendar-grid span {
@@ -128,7 +127,7 @@
       position: relative;
       opacity: 0;
       transform: scale(0.5);
-      transition: all 0.25s ease;
+      transition: all 0.2s ease;
     }
 
     .calendar-grid span.show-day {
@@ -137,7 +136,7 @@
     }
 
     .calendar-grid .day-name {
-      color: #888;
+      color: #777;
       font-weight: bold;
       opacity: 1 !important;
       transform: none !important;
@@ -156,15 +155,15 @@
     .calendar-grid .heart-day::after {
       content: '❤️';
       position: absolute;
-      font-size: 0.5rem;
+      font-size: 0.45rem;
       top: -2px;
       right: 0;
     }
 
     .typing-text {
-      margin-top: 12px;
+      margin-top: 10px;
       color: var(--burgundy);
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
       border-left: 2px solid var(--burgundy);
@@ -184,15 +183,63 @@
       animation: typingEffect 2s steps(30, end) forwards;
     }
 
+    .envelope-box {
+      background: #FAF8F5;
+      border: 2px dashed var(--burgundy);
+      border-radius: 16px;
+      padding: 30px 20px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .envelope-box:hover {
+      background: #F4EBE8;
+    }
+
+    .envelope-heart {
+      font-size: 3rem;
+      color: var(--burgundy);
+      animation: pulseHeart 1.5s infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .envelope-text {
+      color: var(--burgundy);
+      font-size: 1.1rem;
+      font-weight: bold;
+      font-family: 'Amiri', serif;
+    }
+
+    .hidden-video-container {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .story-video {
+      width: 100%;
+      max-height: 320px;
+      border-radius: 12px;
+      background-color: #000;
+      outline: none;
+    }
+
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 25px;
-      font-size: 1.5rem;
+      bottom: 20px;
+      font-size: 1.4rem;
       color: #FFFFFF;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,7 +255,7 @@
 
     @keyframes floatButterfly {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(10px); }
+      50% { transform: translateX(-50%) translateY(8px); }
     }
 
     .star {
@@ -242,23 +289,22 @@
     </div>
   </div>
 
-  <!-- القسم الثاني (ديير عموري وتصميمك الأصلي للتقويم تحتها مباشرة) -->
+  <!-- القسم الثاني -->
   <div class="story-section" id="section-2" data-animated="false">
     <div class="container">
-      <div id="typed-title" class="birthday-title-top" style="width: 0; overflow: hidden; white-space: nowrap; margin: 0 auto 12px auto;">Dear 3amory</div>
+      <div id="typed-title" class="birthday-title-top" style="width: 0; overflow: hidden; white-space: nowrap; margin: 0 auto 2px auto;">Dear 3amory</div>
+      <div class="birthday-subtitle">It's your 35th birthday</div>
       
       <img id="img-2" alt="Photo 2" class="story-img">
 
-      <div class="calendar-box" id="cal-box">
-        <div class="calendar-header">October 2026</div>
+      <div class="calendar-embedded" id="cal-box">
         <div class="calendar-grid" id="cal-grid">
-          <!-- ترتيب الأيام مطابق لتصميمك (السبت لـ الأحد) -->
-          <span class="day-name">Sat</span><span class="day-name">Fri</span><span class="day-name">Thu</span><span class="day-name">Wed</span><span class="day-name">Tue</span><span class="day-name">Mon</span><span class="day-name">Sun</span>
-          <span class="date-num">3</span><span class="date-num">2</span><span class="date-num">1</span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span>
-          <span class="date-num">10</span><span class="date-num heart-day">9</span><span class="date-num">8</span><span class="date-num">7</span><span class="date-num">6</span><span class="date-num">5</span><span class="date-num">4</span>
-          <span class="date-num">17</span><span class="date-num">16</span><span class="date-num">15</span><span class="date-num">14</span><span class="date-num">13</span><span class="date-num">12</span><span class="date-num">11</span>
-          <span class="date-num">24</span><span class="date-num">23</span><span class="date-num">22</span><span class="date-num">21</span><span class="date-num">20</span><span class="date-num">19</span><span class="date-num">18</span>
-          <span class="date-num">31</span><span class="date-num">30</span><span class="date-num">29</span><span class="date-num">28</span><span class="date-num">27</span><span class="date-num">26</span><span class="date-num">25</span>
+          <span class="day-name">Sun</span><span class="day-name">Mon</span><span class="day-name">Tue</span><span class="day-name">Wed</span><span class="day-name">Thu</span><span class="day-name">Fri</span><span class="day-name">Sat</span>
+          <span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num"></span><span class="date-num">1</span><span class="date-num">2</span><span class="date-num">3</span>
+          <span class="date-num">4</span><span class="date-num">5</span><span class="date-num">6</span><span class="date-num">7</span><span class="date-num">8</span><span class="date-num heart-day">9</span><span class="date-num">10</span>
+          <span class="date-num">11</span><span class="date-num">12</span><span class="date-num">13</span><span class="date-num">14</span><span class="date-num">15</span><span class="date-num">16</span><span class="date-num">17</span>
+          <span class="date-num">18</span><span class="date-num">19</span><span class="date-num">20</span><span class="date-num">21</span><span class="date-num">22</span><span class="date-num">23</span><span class="date-num">24</span>
+          <span class="date-num">25</span><span class="date-num">26</span><span class="date-num">27</span><span class="date-num">28</span><span class="date-num">29</span><span class="date-num">30</span><span class="date-num">31</span>
         </div>
       </div>
 
@@ -266,10 +312,23 @@
     </div>
   </div>
 
-  <!-- القسم الثالث -->
+  <!-- القسم الثالث (ظرف الفيديو) -->
   <div class="story-section" id="section-3">
     <div class="container">
-      <img id="img-3" alt="Photo 3" class="story-img">
+      <div class="birthday-title-top" style="font-size: 1.4rem;">Our Memories ❤️</div>
+      
+      <div id="envelope" class="envelope-box" onclick="openEnvelope()">
+        <div class="envelope-heart">💌</div>
+        <div class="envelope-text">اضغط هنا عشان تفتح ظرف الذكريات.. 🤍</div>
+      </div>
+
+      <div id="video-container" class="hidden-video-container">
+        <video id="story-video" class="story-video" controls playsinline preload="metadata">
+          <source src="Video.mp4" type="video/mp4">
+          متصفحك لا يدعم عرض الفيديو
+        </video>
+        <div style="margin-top: 8px; color: var(--burgundy); font-size: 1.05rem; font-weight: bold; font-family: 'Amiri', serif;">أحلى ذكريات وأيام مع بعض.. ربنا يخلين لبعض دايمًا ✨</div>
+      </div>
     </div>
   </div>
 
@@ -277,7 +336,6 @@
   <div class="story-section" id="section-4">
     <div class="container">
       <img id="img-4" alt="Photo 4" class="story-img">
-      <div style="margin-top:10px; color:var(--burgundy); font-size:1.2rem; font-weight:bold; font-family:'Amiri',serif;">Happy Birthday My Love! ❤️</div>
     </div>
   </div>
 
@@ -287,6 +345,8 @@
 
     window.onload = function() {
       const music = document.getElementById('bg-music');
+      const video = document.getElementById('story-video');
+
       function playMusicOnce() {
         music.play().catch(e => console.log("Audio waiting"));
         document.removeEventListener('click', playMusicOnce);
@@ -295,13 +355,31 @@
       document.addEventListener('click', playMusicOnce);
       document.addEventListener('touchstart', playMusicOnce);
 
+      if(video) {
+        video.onplay = () => { if(!music.paused) music.volume = 0.1; };
+        video.onpause = () => { music.volume = 1.0; };
+        video.onended = () => { music.volume = 1.0; };
+      }
+
       loadSmartImage('img-1', ['Photo1', 'photo1', 'Photo 1', 'photo 1', '1']);
       loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
-      loadSmartImage('img-3', ['Photo3', 'photo3', 'Photo 3', 'photo 3', '3']);
       loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
 
       setupScrollObserver();
     };
+
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      const videoContainer = document.getElementById('video-container');
+      const video = document.getElementById('story-video');
+      const music = document.getElementById('bg-music');
+
+      envelope.style.display = 'none';
+      videoContainer.style.display = 'block';
+
+      if(!music.paused) music.volume = 0.1;
+      video.play().catch(e => console.log("Video autoplay blocked"));
+    }
 
     function scrollToNext() {
       const music = document.getElementById('bg-music');
@@ -358,14 +436,14 @@
         dateNums.forEach((num, index) => {
           setTimeout(() => {
             num.classList.add('show-day');
-          }, index * 30);
+          }, index * 25);
         });
-      }, 1000);
+      }, 900);
 
       setTimeout(() => {
         const footerElem = document.getElementById('typed-footer');
         footerElem.classList.add('start-typing');
-      }, 2500);
+      }, 2300);
     }
 
     function triggerFinalCelebration() {
@@ -393,6 +471,7 @@
 
     function loadSmartImage(imgId, namesList) {
       const imgElem = document.getElementById(imgId);
+      if(!imgElem) return;
       const exts = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
       let nIdx = 0;
       function tryNextName() {
