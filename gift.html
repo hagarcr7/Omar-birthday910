@@ -50,6 +50,11 @@
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .story-img {
@@ -61,32 +66,68 @@
       display: block;
     }
 
-    .envelope-screen {
+    /* تأثير الهزة الخفيفة للعناصر الإرشادية */
+    .interactive-box {
+      background: linear-gradient(135deg, #7A1C29 0%, #5A121D 100%);
+      width: 100%;
+      max-width: 260px;
+      height: 180px;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 10px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(122, 28, 41, 0.3);
+      position: relative;
+      border: 2px solid #FFD700;
+      animation: subtleShake 2s infinite ease-in-out;
     }
 
+    @keyframes subtleShake {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-2deg) scale(1.02); }
+      40% { transform: rotate(2deg) scale(1.02); }
+      60% { transform: rotate(-1deg) scale(1); }
+      80% { transform: rotate(1deg) scale(1); }
+    }
+
+    .interactive-icon {
+      font-size: 3.5rem;
+      color: #FFD700;
+    }
+
+    /* إطار الفيديو الكبير */
     .video-frame-container {
+      display: none;
       width: 100%;
-      max-width: 320px;
+      max-width: 360px;
       background: #111;
       border-radius: 24px;
       padding: 12px;
       box-shadow: 0 10px 30px rgba(122, 28, 41, 0.2);
       border: 3px solid var(--burgundy);
       margin: 10px auto;
-      position: relative;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     .video-frame {
       width: 100%;
-      height: 240px;
+      height: 320px;
       border-radius: 16px;
       border: none;
       background: #000;
+    }
+
+    .hidden-content {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.5s ease;
     }
 
     .arrow-btn {
@@ -131,7 +172,7 @@
 
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <!-- الصفحة الأولى (صورة 1) -->
+  <!-- الصفحة الأولى: صورة 1 -->
   <div class="story-section" id="sec-1">
     <div class="container">
       <img id="img-1" class="story-img" alt="1">
@@ -139,36 +180,54 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-2')">⬇</button>
   </div>
 
-  <!-- الصفحة الثانية (صورة 2) -->
+  <!-- الصفحة الثانية: باب مقفول يفتح الصورة 2 -->
   <div class="story-section" id="sec-2">
     <div class="container">
-      <img id="img-2" class="story-img" alt="2">
+      <div id="box-2" class="interactive-box" onclick="revealContent(2)">
+        <div class="interactive-icon">🚪</div>
+      </div>
+      <div id="content-2" class="hidden-content">
+        <img id="img-2" class="story-img" alt="2">
+      </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-3')">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة (إطار الفيديو فقط من غير أي كلام فوقه) -->
+  <!-- الصفحة الثالثة: ظرف الفيديو الكبير مع خفض صوت المزيكا -->
   <div class="story-section" id="sec-3">
-    <div class="container envelope-screen">
-      <div class="video-frame-container">
-        <iframe class="video-frame" src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview" allow="autoplay"></iframe>
+    <div class="container">
+      <div id="box-3" class="interactive-box" onclick="revealVideo()">
+        <div class="interactive-icon">💌</div>
+      </div>
+      <div id="videoContainer" class="video-frame-container">
+        <iframe id="myVideo" class="video-frame" src="" data-src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview" allow="autoplay"></iframe>
       </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
   </div>
 
-  <!-- الصفحة الرابعة (صورة 3) -->
+  <!-- الصفحة الرابعة: قفل بمفتاح يفتح الصورة 3 -->
   <div class="story-section" id="sec-4">
     <div class="container">
-      <img id="img-3" class="story-img" alt="3">
+      <div id="box-4" class="interactive-box" onclick="revealContent(4)">
+        <div class="interactive-icon">🔐</div>
+      </div>
+      <div id="content-4" class="hidden-content">
+        <img id="img-3" class="story-img" alt="3">
+      </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-5')">⬇</button>
   </div>
 
-  <!-- الصفحة الخامسة والأخيرة (صورة 4 مع الاحتفال) -->
+  <!-- الصفحة الخامسة: ورقة كتاب مقفولة تفتح الصورة 4 مع الاحتفال -->
   <div class="story-section" id="sec-5">
     <div class="container">
-      <img id="img-4" class="story-img" alt="4">
+      <div id="box-5" class="interactive-box" onclick="revealContent(5)">
+        <div class="interactive-icon">📖</div>
+      </div>
+      <div id="content-5" class="hidden-content">
+        <img id="img-4" class="story-img" alt="4">
+      </div>
     </div>
   </div>
 
@@ -181,6 +240,28 @@
         music.play().catch(e => {});
       }
     }, { once: true });
+
+    // دالة لفتح الصور العادية
+    function revealContent(num) {
+      document.getElementById('box-' + num).style.display = 'none';
+      document.getElementById('content-' + num).style.display = 'block';
+    }
+
+    // دالة خاصة لفتح الفيديو وتوطية المزيكا
+    function revealVideo() {
+      const box = document.getElementById('box-3');
+      const videoContainer = document.getElementById('videoContainer');
+      const video = document.getElementById('myVideo');
+      const music = document.getElementById('bg-music');
+
+      if(music) {
+        music.volume = 0.15; // توطية صوت الخلفية
+      }
+
+      box.style.display = 'none';
+      videoContainer.style.display = 'block';
+      video.src = video.getAttribute('data-src');
+    }
 
     function scrollToSec(secId) {
       document.getElementById(secId).scrollIntoView({ behavior: 'smooth' });
