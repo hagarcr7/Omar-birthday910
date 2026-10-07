@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday 3amory 🎉</title>
+  <title>Happy Birthday 3amory</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
@@ -18,7 +18,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      font-family: 'Cairo', sans-serif;
     }
 
     body {
@@ -28,48 +28,29 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 10px 15px;
+      padding: 15px;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    .bg-sparkle {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 0;
-      background-image: 
-        radial-gradient(circle, #7A1C29 2px, transparent 2px),
-        radial-gradient(circle, #FFD700 2px, transparent 2px);
-      background-size: 60px 60px;
-      opacity: 0.2;
     }
 
     .story-section {
       width: 100%;
       max-width: 400px;
-      min-height: 85vh;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      margin-bottom: 15px;
-      z-index: 2;
+      margin-bottom: 20px;
     }
 
     .container {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 10px;
+      padding: 12px;
       width: 100%;
       box-shadow: 0 8px 25px rgba(122, 28, 41, 0.08);
       text-align: center;
       border: 1.5px solid #EAE3D9;
-      position: relative;
     }
 
     .story-img {
@@ -81,56 +62,23 @@
       display: block;
     }
 
-    .envelope-box {
+    .video-box {
       background: #FAF8F5;
-      border: 2px dashed var(--burgundy);
+      border: 2px solid var(--burgundy);
       border-radius: 16px;
-      padding: 25px 15px;
-      cursor: pointer;
+      padding: 15px;
       text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      margin: 5px 0;
-    }
-
-    .envelope-box:hover {
-      background: #F4EBE8;
-    }
-
-    .envelope-heart {
-      font-size: 3rem;
-      color: var(--burgundy);
-      animation: pulseHeart 1.5s infinite;
-      margin-bottom: 8px;
-    }
-
-    @keyframes pulseHeart {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .envelope-text {
-      color: var(--burgundy);
-      font-size: 1.1rem;
-      font-weight: bold;
-      font-family: 'Amiri', serif;
-    }
-
-    .hidden-video-container {
-      display: none;
-      margin-top: 5px;
     }
 
     .story-video {
       width: 100%;
-      max-height: 380px;
+      max-height: 350px;
       border-radius: 12px;
       background-color: #000;
-      outline: none;
     }
 
     .exact-custom-text {
-      margin-top: 10px;
+      margin-top: 12px;
       color: var(--burgundy);
       font-size: 1.05rem;
       font-weight: bold;
@@ -139,169 +87,131 @@
       white-space: pre-line;
     }
 
-    .floating-arrow-guide {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 15px;
-      font-size: 1.3rem;
-      color: #FFFFFF;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--burgundy), #5A121D);
-      box-shadow: 0 0 12px rgba(122, 28, 41, 0.7);
-      border: 2px solid #F9ECEE;
+    .next-btn {
+      margin-top: 15px;
+      background-color: var(--burgundy);
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1rem;
+      border-radius: 25px;
       cursor: pointer;
-      z-index: 1000;
-      animation: floatButterfly 2s infinite ease-in-out;
-      transition: opacity 0.3s ease;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(122, 28, 41, 0.3);
     }
 
-    @keyframes floatButterfly {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+    .celebrate-btn {
+      margin-top: 15px;
+      background: linear-gradient(135deg, #7A1C29, #FFD700);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
     }
 
     .star {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background: gold;
+      position: fixed;
+      width: 16px;
+      height: 16px;
+      background: #FFD700;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       animation: fall linear forwards;
-      z-index: 999;
+      z-index: 9999;
     }
 
     @keyframes fall {
-      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+      0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-sparkle"></div>
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
-
   <!-- الصفحة الأولى -->
-  <div class="story-section" id="section-1">
+  <div class="story-section" id="sec-1">
     <div class="container">
-      <img id="img-1" alt="Photo 1" class="story-img">
+      <img id="img-1" class="story-img" alt="1">
+      <button class="next-btn" onclick="goToSec(2)">التالي ✨</button>
     </div>
   </div>
 
   <!-- الصفحة الثانية -->
-  <div class="story-section" id="section-2">
+  <div class="story-section" id="sec-2" style="display:none;">
     <div class="container">
-      <img id="img-2" alt="Photo 2" class="story-img">
+      <img id="img-2" class="story-img" alt="2">
+      <button class="next-btn" onclick="goToSec(3)">التالي ✨</button>
     </div>
   </div>
 
-  <!-- الصفحة الثالثة (ظرف الفيديو والنص الخاص بكي) -->
-  <div class="story-section" id="section-3">
+  <!-- الصفحة الثالثة (الفيديو) -->
+  <div class="story-section" id="sec-3" style="display:none;">
     <div class="container">
-      <div id="envelope" class="envelope-box" onclick="openEnvelope()">
-        <div class="envelope-heart">💌</div>
-        <div class="envelope-text">دوس ع القلب </div>
-      </div>
-
-      <div id="video-container" class="hidden-video-container">
-        <video id="story-video" class="story-video" controls playsinline preload="auto">
+      <div class="video-box">
+        <video id="my-video" class="story-video" controls playsinline>
           <source src="3.mp4" type="video/mp4">
+          متصفحك لا يدعم الفيديو
         </video>
         <div class="exact-custom-text">من السنة اللي فاتت للنهارده 
 كل لحظة معاك كانت من اجمل ايام حياتي 
 ربنا يخليك ليا ياحبيبي ونفضل العمر كله سوا ...</div>
       </div>
+      <button class="next-btn" onclick="goToSec(4)">التالي لأخر صفحة ❤️</button>
     </div>
   </div>
 
   <!-- الصفحة الرابعة والأخيرة -->
-  <div class="story-section" id="section-4">
+  <div class="story-section" id="sec-4" style="display:none;">
     <div class="container">
-      <img id="img-4" alt="Photo 4" class="story-img">
+      <img id="img-4" class="story-img" alt="4">
+      <button class="celebrate-btn" onclick="launchFireworks()">إعادة الألعاب النارية والصواريخ 🎆</button>
     </div>
   </div>
 
   <script>
-    let currentStep = 1;
-    const totalSections = 4;
+    let hasCelebrated = false;
 
-    window.onload = function() {
+    document.addEventListener('click', function() {
       const music = document.getElementById('bg-music');
-
-      function playMusicOnce() {
-        music.play().catch(e => console.log("Audio waiting"));
-        document.removeEventListener('click', playMusicOnce);
-        document.removeEventListener('touchstart', playMusicOnce);
-      }
-      document.addEventListener('click', playMusicOnce);
-      document.addEventListener('touchstart', playMusicOnce);
-
-      loadSmartImage('img-1', ['Photo1', 'photo1', 'Photo 1', 'photo 1', '1']);
-      loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
-      loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
-    };
-
-    function openEnvelope() {
-      const envelope = document.getElementById('envelope');
-      const videoContainer = document.getElementById('video-container');
-      const video = document.getElementById('story-video');
-      const music = document.getElementById('bg-music');
-
-      envelope.style.display = 'none';
-      videoContainer.style.display = 'block';
-
-      if(!music.paused) music.volume = 0.1;
-      
-      video.load();
-      video.play().then(() => {
-        console.log("Video playing successfully");
-      }).catch(error => {
-        console.log("Autoplay prevented, user can use controls:", error);
-      });
-    }
-
-    function scrollToNext() {
-      const music = document.getElementById('bg-music');
-      if (music.paused) {
+      if(music.paused) {
         music.play().catch(e => {});
       }
+    }, { once: true });
 
-      currentStep++;
-      if (currentStep > totalSections) {
-        currentStep = totalSections;
-        return;
-      }
+    function goToSec(num) {
+      document.querySelectorAll('.story-section').forEach(s => s.style.display = 'none');
+      document.getElementById('sec-' + num).style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      const target = document.getElementById('section-' + currentStep);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-
-      if (currentStep === totalSections) {
-        setTimeout(() => {
-          const arrow = document.getElementById('flying-arrow');
-          arrow.style.opacity = '0';
-          arrow.style.pointerEvents = 'none';
-          triggerFinalCelebration();
-        }, 500);
+      // لو راحت الصفحة الرابعة سواء بالضغط أو بالسكرول
+      if (num === 4 && !hasCelebrated) {
+        hasCelebrated = true;
+        setTimeout(launchFireworks, 300);
       }
     }
 
-    function triggerFinalCelebration() {
-      createFallingStars();
-      
-      // إطلاق صواريخ وألعاب نارية بألوان النبيتي والذهبي والأبيض
-      var duration = 3 * 1000;
+    // مراقبة لو المستخدم اتنقل للـ Sec-4 عن طريق السكرول اليدوي العادي
+    window.addEventListener('scroll', function() {
+      const sec4 = document.getElementById('sec-4');
+      if (sec4 && sec4.style.display !== 'none') {
+        const rect = sec4.getBoundingClientRect();
+        // لو الصفحة الأخيرة ظهرت على الشاشة
+        if (rect.top <= window.innerHeight / 2 && !hasCelebrated) {
+          hasCelebrated = true;
+          launchFireworks();
+        }
+      }
+    });
+
+    function launchFireworks() {
+      var duration = 3.5 * 1000;
       var animationEnd = Date.now() + duration;
-      var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+      var defaults = { startVelocity: 35, spread: 360, ticks: 80, zIndex: 10000 };
 
       function randomInRange(min, max) {
         return Math.random() * (max - min) + min;
@@ -312,33 +222,38 @@
         if (timeLeft <= 0) {
           return clearInterval(interval);
         }
-        var particleCount = 50 * (timeLeft / duration);
+        var particleCount = 40 * (timeLeft / duration);
+        
         confetti(Object.assign({}, defaults, { 
           particleCount, 
-          origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          origin: { x: randomInRange(0.1, 0.4), y: Math.random() - 0.2 },
           colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#5A121D']
         }));
         confetti(Object.assign({}, defaults, { 
           particleCount, 
-          origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          origin: { x: randomInRange(0.6, 0.9), y: Math.random() - 0.2 },
           colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#FFC0CB']
         }));
       }, 250);
-    }
 
-    function createFallingStars() {
-      for (let i = 0; i < 45; i++) {
+      for (let i = 0; i < 50; i++) {
         setTimeout(() => {
           const star = document.createElement('div');
           star.className = 'star';
           star.style.left = Math.random() * window.innerWidth + 'px';
-          star.style.background = Math.random() > 0.5 ? '#FFD700' : '#7A1C29';
+          star.style.background = Math.random() > 0.4 ? '#FFD700' : '#7A1C29';
           star.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
           document.body.appendChild(star);
           setTimeout(() => star.remove(), 4000);
-        }, i * 70);
+        }, i * 60);
       }
     }
+
+    window.onload = function() {
+      loadSmartImage('img-1', ['Photo1', 'photo1', 'Photo 1', 'photo 1', '1']);
+      loadSmartImage('img-2', ['Photo2', 'photo2', 'Photo 2', 'photo 2', '2']);
+      loadSmartImage('img-4', ['Photo4', 'photo4', 'Photo 4', 'photo 4', '4']);
+    };
 
     function loadSmartImage(imgId, namesList) {
       const imgElem = document.getElementById(imgId);
