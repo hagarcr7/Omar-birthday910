@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday 3amory</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     :root {
       --bg-color: #F7F3ED;
       --card-bg: #FFFFFF;
       --burgundy: #7A1C29;
-      --text-color: #333333;
     }
 
     * {
@@ -23,30 +21,30 @@
 
     body {
       background-color: var(--bg-color);
-      color: var(--text-color);
       display: flex;
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 15px;
+      padding: 10px;
       overflow-x: hidden;
     }
 
     .story-section {
       width: 100%;
       max-width: 400px;
-      min-height: 90vh;
+      min-height: 95vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
+      position: relative;
+      margin-bottom: 10px;
     }
 
     .container {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 12px;
+      padding: 8px;
       width: 100%;
       box-shadow: 0 8px 25px rgba(122, 28, 41, 0.08);
       text-align: center;
@@ -55,62 +53,43 @@
 
     .story-img {
       width: 100%;
-      max-height: 75vh;
+      max-height: 80vh;
       object-fit: contain;
       border-radius: 14px;
       background-color: #FAF8F5;
       display: block;
     }
 
-    .video-box {
-      background: #FAF8F5;
-      border: 2px solid var(--burgundy);
-      border-radius: 16px;
-      padding: 15px;
-      text-align: center;
-    }
-
     .story-video {
       width: 100%;
-      max-height: 350px;
-      border-radius: 12px;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 14px;
       background-color: #000;
+      display: block;
     }
 
-    .exact-custom-text {
-      margin-top: 12px;
-      color: var(--burgundy);
-      font-size: 1.05rem;
-      font-weight: bold;
-      font-family: 'Amiri', serif;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-
-    .next-btn {
-      margin-top: 15px;
-      background-color: var(--burgundy);
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      font-size: 1rem;
-      border-radius: 25px;
+    /* سهم التنقل البسيط */
+    .arrow-btn {
+      margin-top: 10px;
+      font-size: 1.4rem;
+      color: #FFFFFF;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--burgundy);
+      box-shadow: 0 4px 10px rgba(122, 28, 41, 0.4);
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 10px rgba(122, 28, 41, 0.3);
+      border: none;
+      animation: bounceArrow 1.5px infinite ease-in-out;
     }
 
-    .celebrate-btn {
-      margin-top: 15px;
-      background: linear-gradient(135deg, #7A1C29, #FFD700);
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      font-size: 1.1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    @keyframes bounceArrow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
 
     .star {
@@ -137,45 +116,39 @@
   <div class="story-section" id="sec-1">
     <div class="container">
       <img id="img-1" class="story-img" alt="1">
-      <button class="next-btn" onclick="goToSec(2)">التالي ✨</button>
     </div>
+    <button class="arrow-btn" onclick="goToSec(2)">⬇</button>
   </div>
 
   <!-- الصفحة الثانية -->
   <div class="story-section" id="sec-2" style="display:none;">
     <div class="container">
       <img id="img-2" class="story-img" alt="2">
-      <button class="next-btn" onclick="goToSec(3)">التالي ✨</button>
     </div>
+    <button class="arrow-btn" onclick="goToSec(3)">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة (الفيديو) -->
+  <!-- الصفحة الثالثة (الفيديو 3.mp4 بدون أي كلام) -->
   <div class="story-section" id="sec-3" style="display:none;">
     <div class="container">
-      <div class="video-box">
-        <video id="my-video" class="story-video" controls playsinline>
-          <source src="3.mp4" type="video/mp4">
-          متصفحك لا يدعم الفيديو
-        </video>
-        <div class="exact-custom-text">من السنة اللي فاتت للنهارده 
-كل لحظة معاك كانت من اجمل ايام حياتي 
-ربنا يخليك ليا ياحبيبي ونفضل العمر كله سوا ...</div>
-      </div>
-      <button class="next-btn" onclick="goToSec(4)">التالي لأخر صفحة ❤️</button>
+      <video id="my-video" class="story-video" controls playsinline>
+        <source src="3.mp4" type="video/mp4">
+      </video>
     </div>
+    <button class="arrow-btn" onclick="goToSec(4)">⬇</button>
   </div>
 
   <!-- الصفحة الرابعة والأخيرة -->
   <div class="story-section" id="sec-4" style="display:none;">
     <div class="container">
       <img id="img-4" class="story-img" alt="4">
-      <button class="celebrate-btn" onclick="launchFireworks()">إعادة الألعاب النارية والصواريخ 🎆</button>
     </div>
   </div>
 
   <script>
     let hasCelebrated = false;
 
+    // تشغيل الموسيقى مع أول ضغطة في الشاشة
     document.addEventListener('click', function() {
       const music = document.getElementById('bg-music');
       if(music.paused) {
@@ -188,19 +161,24 @@
       document.getElementById('sec-' + num).style.display = 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      // لو راحت الصفحة الرابعة سواء بالضغط أو بالسكرول
+      // تشغيل الفيديو تلقائياً لو وصلنا للصفحة الثالثة
+      if (num === 3) {
+        const vid = document.getElementById('my-video');
+        vid.play().catch(e => {});
+      }
+
+      // تشغيل الصواريخ والنجوم في الصفحة الأخيرة تلقائياً
       if (num === 4 && !hasCelebrated) {
         hasCelebrated = true;
         setTimeout(launchFireworks, 300);
       }
     }
 
-    // مراقبة لو المستخدم اتنقل للـ Sec-4 عن طريق السكرول اليدوي العادي
+    // تفعيل الصواريخ لو المستخدم عمل سكرول لحد آخر صفحة
     window.addEventListener('scroll', function() {
       const sec4 = document.getElementById('sec-4');
       if (sec4 && sec4.style.display !== 'none') {
         const rect = sec4.getBoundingClientRect();
-        // لو الصفحة الأخيرة ظهرت على الشاشة
         if (rect.top <= window.innerHeight / 2 && !hasCelebrated) {
           hasCelebrated = true;
           launchFireworks();
