@@ -231,6 +231,16 @@
       outline: none;
     }
 
+    .exact-custom-text {
+      margin-top: 10px;
+      color: var(--burgundy);
+      font-size: 1.05rem;
+      font-weight: bold;
+      font-family: 'Amiri', serif;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
     .floating-arrow-guide {
       position: fixed;
       left: 50%;
@@ -312,7 +322,7 @@
     </div>
   </div>
 
-  <!-- القسم الثالث (ظرف الفيديو) -->
+  <!-- القسم الثالث (ظرف الفيديو والنص الخاص بكي) -->
   <div class="story-section" id="section-3">
     <div class="container">
       <div class="birthday-title-top" style="font-size: 1.4rem;">Our Memories ❤️</div>
@@ -324,10 +334,12 @@
 
       <div id="video-container" class="hidden-video-container">
         <video id="story-video" class="story-video" controls playsinline preload="metadata">
-          <source src="Video.mp4" type="video/mp4">
+          <source src="3.mp4" type="video/mp4">
           متصفحك لا يدعم عرض الفيديو
         </video>
-        <div style="margin-top: 8px; color: var(--burgundy); font-size: 1.05rem; font-weight: bold; font-family: 'Amiri', serif;">أحلى ذكريات وأيام مع بعض.. ربنا يخلين لبعض دايمًا ✨</div>
+        <div class="exact-custom-text">من السنة اللي فاتت للنهارده 
+كل لحظة معاك كانت من اجمل ايام حياتي 
+ربنا يخليك ليا ياحبيبي ونفضل العمر كله سوا ...</div>
       </div>
     </div>
   </div>
