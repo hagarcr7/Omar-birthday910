@@ -61,7 +61,6 @@
       display: block;
     }
 
-    /* تصميم الظرف */
     .envelope-screen {
       display: flex;
       flex-direction: column;
@@ -74,6 +73,8 @@
       cursor: pointer;
       text-align: center;
       transition: transform 0.2s;
+      text-decoration: none;
+      display: block;
     }
 
     .envelope-box:active {
@@ -100,21 +101,6 @@
       color: var(--burgundy);
     }
 
-    .video-container {
-      display: none;
-      width: 100%;
-    }
-
-    .story-video {
-      width: 100%;
-      max-height: 75vh;
-      object-fit: contain;
-      border-radius: 14px;
-      background-color: #000;
-      display: block;
-    }
-
-    /* سهم التنقل */
     .arrow-btn {
       margin-top: 12px;
       font-size: 1.4rem;
@@ -173,22 +159,21 @@
     <button class="arrow-btn" onclick="scrollToSec('sec-3')">⬇</button>
   </div>
 
-  <!-- الصفحة الثالثة (الظرف والفيديو من جوجل فوتوس) -->
+  <!-- الصفحة الثالثة (الظرف بينقل مباشرة للفيديو الجديد) -->
   <div class="story-section" id="sec-3">
     <div class="container envelope-screen">
-        <a href=<a href="Https://files.catbox.moe/7qpl11.mp4" target="_blank" class="envelope-box" style="cursor: pointer; text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%; padding: 20px 0;">
-          " target="_blank" class="envelope-box" style="cursor: pointer; text-decoration: none; display: flex; flex-direction: column; align-items: center; width: 100%; padding: 20px 0;">
-        <div class="envelope-icon" style="font-size: 80px; position: relative; display: inline-block;">
+      <a href="Lv_7651463646329163028_20261007195549.mp4" target="_blank" class="envelope-box">
+        <div class="envelope-icon">
           ✉️
-          <span class="envelope-heart" style="position: absolute; top: 20px; right: 25px; font-size: 35px;">❤️</span>
+          <span class="envelope-heart">❤️</span>
         </div>
-        <div class="envelope-text" style="margin-top: 15px; font-size: 1.2rem; font-weight: bold; color: #7A1C29;">اضغط هنا  ✨</div>
-        </a>
+        <div class="envelope-text">دوس هنا   ✨</div>
+      </a>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
   </div>
 
-  <!-- الصفحة الرابعة والأخيرة (الصواريخ تشتغل تلقائياً) -->
+  <!-- الصفحة الرابعة والأخيرة -->
   <div class="story-section" id="sec-4">
     <div class="container">
       <img id="img-4" class="story-img" alt="4">
@@ -204,14 +189,6 @@
         music.play().catch(e => {});
       }
     }, { once: true });
-
-    function openEnvelope() {
-      document.getElementById('envelope-wrapper').style.display = 'none';
-      const vidWrapper = document.getElementById('video-wrapper');
-      vidWrapper.style.display = 'block';
-      const vid = document.getElementById('my-video');
-      vid.play().catch(e => {});
-    }
 
     function scrollToSec(secId) {
       document.getElementById(secId).scrollIntoView({ behavior: 'smooth' });
