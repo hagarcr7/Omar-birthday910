@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday 3amory - Photos 🎉</title>
+  <title>Happy Birthday 3amory 🎉</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <style>
     :root {
@@ -27,65 +27,62 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 30px 20px;
+      padding: 40px 20px;
       overflow-x: hidden;
-      overflow-y: auto; 
+      position: relative;
     }
 
-    .container {
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 25px 20px;
+    .story-section {
       width: 100%;
       max-width: 420px;
-      box-shadow: 0 10px 30px rgba(122, 28, 41, 0.08);
+      min-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    /* كارت بتأثير ظهور راقي وهادئ كأنه قصة */
+    .container {
+      background-color: var(--card-bg);
+      border-radius: 24px;
+      padding: 25px 18px;
+      width: 100%;
+      box-shadow: 0 15px 35px rgba(122, 28, 41, 0.1);
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
-      margin-bottom: 50px;
-    }
-
-    h2 {
-      color: var(--burgundy);
-      margin-bottom: 15px;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-
-    .story-step {
-      display: none;
+      z-index: 2;
       opacity: 0;
-      transform: translateY(40px) scale(0.95);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 2px dashed #EAE3D9;
+      transform: translateY(30px) scale(0.95);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .story-step.active {
-      display: block;
+    .container.show {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
 
     .story-img {
       width: 100%;
-      max-height: 380px;
+      max-height: 480px;
       object-fit: contain;
-      border-radius: 14px;
+      border-radius: 16px;
       background-color: #FAF8F5;
       border: 2px solid var(--burgundy);
-      margin-bottom: 18px;
       box-shadow: 0 8px 25px rgba(122, 28, 41, 0.12);
     }
 
-    /* سهم نبيتي منور وبتوهج حركي جذاب */
-    .glowing-arrow {
-      font-size: 2.2rem;
+    /* السهم الطاير زي الفراشة بينزل مع الشاشة */
+    .floating-arrow-guide {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 25px;
+      font-size: 2rem;
       color: #FFFFFF;
-      margin: 15px auto;
-      animation: bounceAndGlow 1.8s infinite ease-in-out;
-      cursor: pointer;
       width: 50px;
       height: 50px;
       display: flex;
@@ -93,26 +90,40 @@
       justify-content: center;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--burgundy), #5A121D);
-      box-shadow: 0 0 15px rgba(122, 28, 41, 0.6), 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 0 20px rgba(122, 28, 41, 0.7), 0 4px 10px rgba(0,0,0,0.2);
       border: 2px solid #F9ECEE;
-      transition: transform 0.2s;
+      cursor: pointer;
+      z-index: 1000;
+      animation: floatButterfly 2s infinite ease-in-out;
+      transition: opacity 0.3s ease;
     }
 
-    .glowing-arrow:hover {
-      transform: scale(1.1);
+    @keyframes floatButterfly {
+      0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
+      50% { transform: translateX(-50%) translateY(12px) rotate(3deg); }
     }
 
-    @keyframes bounceAndGlow {
-      0%, 100% { 
-        transform: translateY(0); 
-        box-shadow: 0 0 10px rgba(122, 28, 41, 0.5);
-      }
-      50% { 
-        transform: translateY(10px); 
-        box-shadow: 0 0 25px rgba(122, 28, 41, 0.9);
-      }
+    /* ورد خفيف وطاير في الخلفية */
+    .floating-flower {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%237A1C29' opacity='0.25'%3E%3Cpath d='M12 2C13.1 2 14 2.9 14 4C14 4.7 13.6 5.3 13 5.7C14.1 6.3 15 7.4 15 8.7C15 9.4 14.7 10 14.2 10.5C15.3 11.1 16 12.3 16 13.7C16 15.5 14.5 17 12.7 17H12C10.3 17 9 15.7 9 14C9 13.1 9.4 12.3 10 11.7C9.4 11.2 9 10.4 9 9.5C9 8.2 9.9 7.1 11 6.5C10.4 6.1 10 5.4 10 4.6C10 3.2 11.2 2 12.7 2H12Z'/%3E%3C/svg%3E");
+      animation: floatFlower linear infinite;
+      z-index: 1;
+      pointer-events: none;
     }
 
+    @keyframes floatFlower {
+      0% { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* نجوم احتفالية للقسم الأخير */
     .star {
       position: absolute;
       width: 15px;
@@ -131,116 +142,152 @@
 </head>
 <body>
 
+  <!-- المزيكا شغالة ومستمرة بدون قطع -->
   <audio id="bg-music" src="MUSIC.mp3" preload="auto" loop></audio>
 
-  <div class="container">
-    <h2 style="font-size: 1.4rem; margin-bottom: 10px;">رحلة ذكرياتنا ❤️</h2>
-    <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">انزل مع السهم عشان تشوف المفاجأة بالترتيب 👇🏻</p>
+  <!-- السهم الطاير زي الفراشة -->
+  <div id="flying-arrow" class="floating-arrow-guide" onclick="scrollToNext()">⬇</div>
 
-    <!-- الصورة الأولى (تظهر فوراً عند فتح الصفحة) -->
-    <div class="story-step active" id="step-1">
+  <!-- القسم الأول -->
+  <div class="story-section" id="section-1">
+    <div class="container" id="box-1">
       <img id="img-1" alt="Photo 1" class="story-img">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--burgundy); margin-bottom: 5px;">انزل عشان تشوف اللي بعده ✨</p>
-      <div class="glowing-arrow" onclick="nextStep(2)">⬇</div>
     </div>
+  </div>
 
-    <!-- الصورة الثانية -->
-    <div class="story-step" id="step-2">
+  <!-- القسم الثاني -->
+  <div class="story-section" id="section-2">
+    <div class="container" id="box-2">
       <img id="img-2" alt="Photo 2" class="story-img">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--burgundy); margin-bottom: 5px;">كمل نزول يا عُمري 👇🏻</p>
-      <div class="glowing-arrow" onclick="nextStep(3)">⬇</div>
     </div>
+  </div>
 
-    <!-- الصورة الثالثة -->
-    <div class="story-step" id="step-3">
+  <!-- القسم الثالث -->
+  <div class="story-section" id="section-3">
+    <div class="container" id="box-3">
       <img id="img-3" alt="Photo 3" class="story-img">
-      <p style="font-size: 0.95rem; font-weight: 600; color: var(--burgundy); margin-bottom: 5px;">قربنا نخلص، انزل كمان مرة ❤️</p>
-      <div class="glowing-arrow" onclick="nextStep(4)">⬇</div>
     </div>
+  </div>
 
-    <!-- الصورة الرابعة والأخيرة -->
-    <div class="story-step" id="step-4">
+  <!-- القسم الرابع والأخير (الهدية والفرقعة) -->
+  <div class="story-section" id="section-4">
+    <div class="container" id="box-4">
       <img id="img-4" alt="Photo 4" class="story-img">
-      <h2 style="font-size: 1.3rem; margin-top: 10px;">كل سنة وانت طيب يا احلى عمورة في الدنيا! 🎂❤️</h2>
     </div>
-
   </div>
 
   <script>
-    // دالة ذكية جداً لالتقاط الصور بجميع امتداداتها الممكنة
-    function loadSmartImage(imgId, namesList) {
-      const imgElem = document.getElementById(imgId);
-      const exts = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
-      let nIdx = 0;
+    let currentStep = 1;
+    const totalSections = 4;
 
-      function tryNextName() {
-        if (nIdx >= namesList.length) return;
-        let base = namesList[nIdx];
-        let eIdx = 0;
-
-        function tryNextExt() {
-          if (eIdx >= exts.length) {
-            nIdx++;
-            tryNextName();
-            return;
-          }
-          let src = base + '.' + exts[eIdx++];
-          let testImg = new Image();
-          testImg.onload = function() {
-            imgElem.src = src;
-          };
-          testImg.onerror = function() {
-            tryNextExt();
-          };
-          testImg.src = src;
-        }
-        tryNextExt();
-      }
-      tryNextName();
+    function createBackgroundFlowers() {
+      setInterval(() => {
+        const flower = document.createElement('div');
+        flower.className = 'floating-flower';
+        flower.style.left = Math.random() * window.innerWidth + 'px';
+        flower.style.animationDuration = (Math.random() * 5 + 6) + 's';
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 11000);
+      }, 900);
     }
 
     window.onload = function() {
+      createBackgroundFlowers();
+      
+      // إظهار أول صورة بإنيميشن راقي وهادئ
+      setTimeout(() => {
+        document.getElementById('box-1').classList.add('show');
+      }, 200);
+
       const music = document.getElementById('bg-music');
-      music.play().catch(e => console.log("Audio play blocked:", e));
+      function playMusicOnce() {
+        music.play().catch(e => console.log("Audio waiting"));
+        document.removeEventListener('click', playMusicOnce);
+        document.removeEventListener('touchstart', playMusicOnce);
+      }
+      document.addEventListener('click', playMusicOnce);
+      document.addEventListener('touchstart', playMusicOnce);
 
       loadSmartImage('img-1', ['Photo 1', 'Photo1', 'photo 1', 'photo1', '1']);
-      loadSmartImage('img-2', ['Photo 2', 'Photo2', 'photo 2', 'photo2', '2']);
+      loadSmartImage('img-2', ['Photo 2', 'photo2', 'Photo2', 'photo 2', '2']);
       loadSmartImage('img-3', ['Photo 3', 'Photo3', 'photo 3', 'photo3', '3']);
       loadSmartImage('img-4', ['Photo 4', 'Photo4', 'photo 4', 'photo4', '4']);
     };
 
-    function nextStep(stepNum) {
-      const targetStep = document.getElementById('step-' + stepNum);
-      if (targetStep) {
-        targetStep.classList.add('active');
-        targetStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function scrollToNext() {
+      const music = document.getElementById('bg-music');
+      if (music.paused) {
+        music.play().catch(e => {});
+      }
 
-        if (stepNum === 4) {
-          createFallingStars();
-          confetti({
-            particleCount: 100,
-            spread: 120,
-            origin: { y: 0.4 },
-            colors: ['#7A1C29', '#FFD700', '#FFFFFF']
-          });
-        }
+      currentStep++;
+      if (currentStep > totalSections) {
+        currentStep = totalSections;
+        return;
+      }
+
+      const target = document.getElementById('section-' + currentStep);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // إظهار الصورة التالية تدريجياً وبشكل راقي
+        setTimeout(() => {
+          document.getElementById('box-' + currentStep).classList.add('show');
+        }, 300);
+      }
+
+      // لو وصلنا للصفحة الأخيرة، نخفي السهم ونعمل احتفال فرقعة الهدية
+      if (currentStep === totalSections) {
+        setTimeout(() => {
+          const arrow = document.getElementById('flying-arrow');
+          arrow.style.opacity = '0';
+          arrow.style.pointerEvents = 'none';
+          triggerFinalCelebration();
+        }, 500);
       }
     }
 
+    function triggerFinalCelebration() {
+      createFallingStars();
+      confetti({
+        particleCount: 150,
+        spread: 140,
+        origin: { y: 0.6 },
+        colors: ['#7A1C29', '#FFD700', '#FFFFFF', '#FF69B4']
+      });
+    }
+
     function createFallingStars() {
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 30; i++) {
         setTimeout(() => {
           const star = document.createElement('div');
           star.className = 'star';
           star.style.left = Math.random() * window.innerWidth + 'px';
           star.style.animationDuration = (Math.random() * 2 + 2) + 's';
           document.body.appendChild(star);
-          
-          setTimeout(() => {
-            star.remove();
-          }, 4000);
-        }, i * 150);
+          setTimeout(() => star.remove(), 4000);
+        }, i * 120);
       }
+    }
+
+    function loadSmartImage(imgId, namesList) {
+      const imgElem = document.getElementById(imgId);
+      const exts = ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG'];
+      let nIdx = 0;
+      function tryNextName() {
+        if (nIdx >= namesList.length) return;
+        let base = namesList[nIdx];
+        let eIdx = 0;
+        function tryNextExt() {
+          if (eIdx >= exts.length) { nIdx++; tryNextName(); return; }
+          let src = base + '.' + exts[eIdx++];
+          let testImg = new Image();
+          testImg.onload = () => imgElem.src = src;
+          testImg.onerror = () => tryNextExt();
+          testImg.src = src;
+        }
+        tryNextExt();
+      }
+      tryNextName();
     }
   </script>
 </body>
