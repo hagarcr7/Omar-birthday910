@@ -28,7 +28,7 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 20px 15px;
+      padding: 10px 15px;
       overflow-x: hidden;
       position: relative;
     }
@@ -51,22 +51,22 @@
     .story-section {
       width: 100%;
       max-width: 400px;
-      min-height: 95vh;
+      min-height: 75vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       z-index: 2;
     }
 
     .container {
       background-color: var(--card-bg);
-      border-radius: 24px;
-      padding: 18px 14px;
+      border-radius: 20px;
+      padding: 12px 10px;
       width: 100%;
-      box-shadow: 0 10px 30px rgba(122, 28, 41, 0.1);
+      box-shadow: 0 8px 25px rgba(122, 28, 41, 0.08);
       text-align: center;
       border: 1.5px solid #EAE3D9;
       position: relative;
@@ -74,36 +74,36 @@
 
     .birthday-title-top {
       color: var(--burgundy);
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
       font-family: 'Pacifico', cursive, sans-serif;
       letter-spacing: 1px;
     }
 
     .birthday-subtitle {
       color: #111111;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-family: 'Cairo', sans-serif;
     }
 
     .story-img {
       width: 100%;
-      max-height: 320px;
+      max-height: 290px;
       object-fit: contain;
-      border-radius: 14px;
+      border-radius: 12px;
       background-color: #FAF8F5;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
 
     .calendar-embedded {
       background: #FAF8F5;
-      padding: 10px;
-      border-radius: 12px;
+      padding: 8px;
+      border-radius: 10px;
       border: 1px solid #EAE3D9;
-      margin-top: 5px;
+      margin-top: 3px;
       opacity: 0;
       transform: translateY(10px);
       transition: all 0.6s ease;
@@ -118,11 +118,11 @@
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       gap: 2px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
     }
 
     .calendar-grid span {
-      padding: 3px;
+      padding: 2px;
       text-align: center;
       position: relative;
       opacity: 0;
@@ -161,9 +161,9 @@
     }
 
     .typing-text {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--burgundy);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
       border-left: 2px solid var(--burgundy);
@@ -186,13 +186,13 @@
     .envelope-box {
       background: #FAF8F5;
       border: 2px dashed var(--burgundy);
-      border-radius: 16px;
-      padding: 30px 20px;
+      border-radius: 14px;
+      padding: 20px 15px;
       cursor: pointer;
       text-align: center;
       transition: all 0.3s ease;
       position: relative;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     .envelope-box:hover {
@@ -200,10 +200,10 @@
     }
 
     .envelope-heart {
-      font-size: 3rem;
+      font-size: 2.5rem;
       color: var(--burgundy);
       animation: pulseHeart 1.5s infinite;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     @keyframes pulseHeart {
@@ -213,31 +213,31 @@
 
     .envelope-text {
       color: var(--burgundy);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
     }
 
     .hidden-video-container {
       display: none;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .story-video {
       width: 100%;
-      max-height: 320px;
-      border-radius: 12px;
+      max-height: 290px;
+      border-radius: 10px;
       background-color: #000;
       outline: none;
     }
 
     .exact-custom-text {
-      margin-top: 10px;
+      margin-top: 8px;
       color: var(--burgundy);
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: bold;
       font-family: 'Amiri', serif;
-      line-height: 1.8;
+      line-height: 1.7;
       white-space: pre-line;
     }
 
@@ -245,17 +245,17 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-      bottom: 20px;
-      font-size: 1.4rem;
+      bottom: 12px;
+      font-size: 1.3rem;
       color: #FFFFFF;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--burgundy), #5A121D);
-      box-shadow: 0 0 15px rgba(122, 28, 41, 0.7);
+      box-shadow: 0 0 12px rgba(122, 28, 41, 0.7);
       border: 2px solid #F9ECEE;
       cursor: pointer;
       z-index: 1000;
@@ -265,13 +265,13 @@
 
     @keyframes floatButterfly {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
+      50% { transform: translateX(-50%) translateY(6px); }
     }
 
     .star {
       position: absolute;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       background: gold;
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
       animation: fall linear forwards;
@@ -325,18 +325,15 @@
   <!-- القسم الثالث (ظرف الفيديو والنص الخاص بكي) -->
   <div class="story-section" id="section-3">
     <div class="container">
-      <div class="birthday-title-top" style="font-size: 1.4rem;">Our Memories ❤️</div>
+      <div class="birthday-title-top" style="font-size: 1.3rem;">Our Memories ❤️</div>
       
       <div id="envelope" class="envelope-box" onclick="openEnvelope()">
         <div class="envelope-heart">💌</div>
-        <div class="envelope-text">اضغط هنا عشان تفتح ظرف الذكريات.. 🤍</div>
+        <div class="envelope-text">دوس ع القلب فقط</div>
       </div>
 
       <div id="video-container" class="hidden-video-container">
-        <video id="story-video" class="story-video" controls playsinline preload="metadata">
-          <source src="3.mp4" type="video/mp4">
-          متصفحك لا يدعم عرض الفيديو
-        </video>
+        <video id="story-video" class="story-video" controls playsinline preload="metadata" src="3.mp4"></video>
         <div class="exact-custom-text">من السنة اللي فاتت للنهارده 
 كل لحظة معاك كانت من اجمل ايام حياتي 
 ربنا يخليك ليا ياحبيبي ونفضل العمر كله سوا ...</div>
@@ -390,6 +387,7 @@
       videoContainer.style.display = 'block';
 
       if(!music.paused) music.volume = 0.1;
+      video.load();
       video.play().catch(e => console.log("Video autoplay blocked"));
     }
 
