@@ -96,7 +96,6 @@
       color: #FFD700;
     }
 
-    /* إطار الفيديو بحجم أكبر ومرتب */
     .video-frame-container {
       display: none;
       width: 100%;
@@ -107,6 +106,8 @@
       box-shadow: 0 10px 30px rgba(122, 28, 41, 0.3);
       border: 3px solid var(--burgundy);
       margin: 5px auto;
+      position: relative;
+      overflow: hidden;
       animation: fadeIn 0.5s ease;
     }
 
@@ -117,10 +118,21 @@
 
     .video-frame {
       width: 100%;
-      height: 420px; /* تكبير الطول بشكل ممتاز عشان يملى الكارد بوضوح */
+      height: 420px;
       border-radius: 14px;
       border: none;
       background: #000;
+    }
+
+    /* طبقة شفافة فوق الفيديو لمنع اللمس المباشر وإخفاء أزرار جوجل درايف المزعجة */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      background: transparent;
     }
 
     .hidden-content {
@@ -199,7 +211,9 @@
         <div class="interactive-icon">💌</div>
       </div>
       <div id="videoContainer" class="video-frame-container">
-        <iframe id="myVideo" class="video-frame" src="" data-src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview" allow="autoplay"></iframe>
+        <!-- طبقة حماية تمنع لمس المتصفح للفيديو وتمنع ظهور أزرار جوجل درايف -->
+        <div class="video-overlay"></div>
+        <iframe id="myVideo" class="video-frame" src="" data-src="https://drive.google.com/file/d/1p-qaLueEzfL7p_ibP8Cnzu3neTtlhLCS/preview?autoplay=1" allow="autoplay"></iframe>
       </div>
     </div>
     <button class="arrow-btn" onclick="scrollToSec('sec-4')">⬇</button>
